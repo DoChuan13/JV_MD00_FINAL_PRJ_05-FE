@@ -4,4 +4,7 @@ export class Const {
   public static TOKEN_KEY = "Token_Key";
   public static ROLES_KEY = "Roles_Key";
   public static TOKEN_HEADER = "Authorization"
+  public static USER = "USER";
+  public static ADMIN = "ADMIN";
+  public static PM = "PM";
 }
