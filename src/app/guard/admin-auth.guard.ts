@@ -37,8 +37,8 @@ export const adminAuthGuard: CanActivateFn = () => {
     } else {
       let roleName = findAccRole(roles);
       if (roleName == Const.USER) {
-        router.navigate(['/login']).then(() => {
-          console.log("Role do not permission!!! Redirect to Login")
+        router.navigate(['/forbidden']).then(() => {
+          console.log("Role do not permission!!! Redirect to Forbidden")
         });
         return false;
       }

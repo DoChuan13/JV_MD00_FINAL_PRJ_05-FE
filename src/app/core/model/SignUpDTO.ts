@@ -5,7 +5,7 @@ export class SignUpDTO {
   private password?: string;
   private roles?: any;
 
-  constructor(name: string, userName: string, email: string, password: string) {
+  constructor(name: any, userName: any, email: any, password: any) {
     this.name = name;
     this.userName = userName;
     this.email = email;

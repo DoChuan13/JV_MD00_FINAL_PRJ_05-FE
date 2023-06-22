@@ -1,8 +1,8 @@
 export class SignInDTO {
-  private userName?: string;
-  private password?: string;
+  private userName: string;
+  private password: string;
 
-  constructor(userName: string, password: string) {
+  constructor(userName: any, password: any) {
     this.userName = userName;
     this.password = password;
   }

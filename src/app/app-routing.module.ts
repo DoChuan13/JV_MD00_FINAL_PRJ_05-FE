@@ -9,6 +9,9 @@ import {AdminComponent} from "./shared/component/admin/admin/admin.component";
 import {userAuthGuard} from "./guard/user-auth.guard";
 import {LoginComponent} from "./shared/component/common/login/login.component";
 import {RegisterComponent} from "./shared/component/common/register/register.component";
+import {adminAuthGuard} from "./guard/admin-auth.guard";
+import {Error403Component} from "./shared/component/common/error403/error403.component";
+import {authGuard} from "./guard/auth.guard";
 
 const routes: Routes = [
   {
@@ -18,9 +21,10 @@ const routes: Routes = [
       {path: "chat", component: ChatComponent},
     ]
   },
-  {path: "admin", component: AdminComponent},
-  {path: "login", component: LoginComponent},
-  {path: "register", component: RegisterComponent},
+  {path: "admin", component: AdminComponent, canActivate: [adminAuthGuard]},
+  {path: "login", component: LoginComponent, canActivate: [authGuard]},
+  {path: "register", component: RegisterComponent, canActivate: [authGuard]},
+  {path: "forbidden", component: Error403Component},
   {path: "**", component: Error404Component},
 ];
 

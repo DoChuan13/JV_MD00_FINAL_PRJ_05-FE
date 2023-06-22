@@ -15,17 +15,4 @@ export function mainJs() {
     document.documentElement.classList.toggle("dark");
     // document.body.classList.toggle("dark")
   };
-
-  /*window.onload = () => {
-    fadeOut();
-  };*/
-
-  /*function loader() {
-    // @ts-ignore
-    document.querySelector(".loader-container").classList.add("active");
-  }
-
-  function fadeOut() {
-    setTimeout(loader, 8900);
-  }*/
 }

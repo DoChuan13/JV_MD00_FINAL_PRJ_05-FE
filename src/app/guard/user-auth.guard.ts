@@ -24,8 +24,8 @@ export const userAuthGuard: CanActivateFn = (route, state) => {
     } else {
       let roleName = findAccRole(roles);
       if (roleName != Const.USER) {
-        router.navigate(['/login']).then(() => {
-          console.log("Role do not permission!!! Redirect to Login")
+        router.navigate(['/admin']).then(() => {
+          console.log("Role do not permission!!! Redirect to Admin")
         });
         return false;
       }

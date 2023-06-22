@@ -5,7 +5,7 @@ import {Const} from "../../core/constant/Const";
   providedIn: 'root'
 })
 export class TokenService {
-  private roles?: string [];
+  private roles?: string [] = [];
 
   constructor() {
   }
@@ -41,7 +41,7 @@ export class TokenService {
     let result = localStorage.getItem(Const.ROLES_KEY);
     if (result != null) {
       JSON.parse(result).forEach((role: any) => {
-        this.roles?.push(role);
+        this.roles?.push(role.authority);
       })
     }
     return this.roles;
