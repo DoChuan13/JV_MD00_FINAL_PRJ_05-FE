@@ -40,7 +40,7 @@
         class="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt"
         (click)="logout()"
       >
-        <i class="bx bxs-moon"></i><
+        <i class="bx bxs-moon"></i>
       </div>
       <!--<div
         class="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt"
@@ -52,7 +52,8 @@
   </div>
 
   <!-- NAV CENTER -->
-  <ul class="flex w-full lg:w-max items-center justify-center">
+  <ul class="flex w-full lg:w-max items-center justify-center"
+      style="margin-bottom: 0">
     <li class="w-1/5 md:w-max text-center">
       <a
         routerLink="/"
@@ -126,18 +127,19 @@
   </ul>
 
   <!-- NAV RIGHT -->
-  <ul class="hidden md:flex mx-4 items-center justify-center">
+  <ul class="hidden md:flex mx-4 items-center justify-center"
+      style="margin-bottom: 0">
     <li class="h-full hidden xl:flex">
       <a
         routerLink="/user"
         class="inline-flex items-center justify-center p-1 rounded-full hover:bg-gray-200 dark:hover:bg-dark-third mx-1"
       >
         <img
-          ngSrc="./assets/images/me.png"
+          ngSrc="{{loginAvatar}}"
           alt="Profile picture"
           class="rounded-full h-7 w-7"
           height="40" width="40"/>
-        <span class="mx-2 font-semibold dark:text-dark-txt">Do Chuan</span>
+        <span class="mx-2 font-semibold dark:text-dark-txt">{{userName}}</span>
       </a>
     </li>
 

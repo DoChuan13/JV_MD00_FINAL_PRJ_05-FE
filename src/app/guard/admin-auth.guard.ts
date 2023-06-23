@@ -29,7 +29,7 @@ export const adminAuthGuard: CanActivateFn = () => {
     });
     return false;
   } else {
-    if (roles == null) {
+    if (roles == undefined) {
       router.navigate(['/login']).then(() => {
         console.log("Role Unknown!!! Redirect to Login")
       });

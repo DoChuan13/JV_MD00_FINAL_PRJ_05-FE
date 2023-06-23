@@ -38,6 +38,9 @@ export class TokenService {
   }
 
   getRoles(): string[] | undefined {
+    if (!this.getToken()) {
+      return undefined;
+    }
     let result = localStorage.getItem(Const.ROLES_KEY);
     if (result != null) {
       JSON.parse(result).forEach((role: any) => {

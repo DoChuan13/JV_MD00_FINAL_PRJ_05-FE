@@ -1,0 +1,12 @@
+<div>
+  <button id="upload-btn" class="btn btn-primary">Upload Image</button>
+  <input id="upload-multi" multiple type="file" (change)="onFileChangedMulti($event)" style="display: none"><br>
+  <mat-spinner *ngIf="checkUploadAvatar"></mat-spinner>
+  <!--  <button id="upload-multi-btn" *ngIf="downloadURL?!selectedFile:selectedFile" mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-success"-->
+  <!--          (click)="onUpload()">Upload Avatar</button>-->
+  <div class="row">
+    <div *ngFor="let image of downloadURL" style="margin-bottom: 10px; margin-top: 10px;display: inline-block;width: 150px">
+      <img [src]="image" style="width: 150px; height: auto;" alt="avatar">
+    </div>
+  </div>
+</div>

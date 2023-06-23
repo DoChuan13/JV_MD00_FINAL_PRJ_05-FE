@@ -24,6 +24,14 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {MatInputModule} from "@angular/material/input";
 import { Error403Component } from './shared/component/common/error403/error403.component';
+import { PostDialogComponent } from './shared/component/element/post-dialog/post-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import { PostFormComponent } from './shared/component/element/post-form/post-form.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import { UploadMultiComponent } from './feature/upload/upload-multi/upload-multi.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -38,21 +46,29 @@ import { Error403Component } from './shared/component/common/error403/error403.c
     RegisterComponent,
     UserComponent,
     Error404Component,
-    Error403Component
+    Error403Component,
+    PostDialogComponent,
+    PostFormComponent,
+    UploadMultiComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    AngularFireStorageModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    MatInputModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        NgOptimizedImage,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        AngularFireStorageModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        MatInputModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatIconModule,
+        MatProgressSpinnerModule
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

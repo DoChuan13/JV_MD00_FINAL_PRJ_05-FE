@@ -12,6 +12,12 @@ export class HttpService {
   constructor(private httpClient: HttpClient) {
   }
 
+  public getDatabasePage(resource: string, locate: string = "", page: any): Observable<any> {
+    const params = page;
+    let url = this.REST_API + resource + "/" + locate;
+    return this.httpClient.get<any>(url, {params});
+  }
+
   public getDatabase(resource: string, locate: string = ""): Observable<any> {
     let url = this.REST_API + resource + "/" + locate;
     return this.httpClient.get<any>(url);

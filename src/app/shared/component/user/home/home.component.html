@@ -10,7 +10,7 @@
           class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third"
         >
           <img
-            ngSrc="./assets/images/me.png"
+            ngSrc="{{loginAvatar}}"
             alt="Profile picture"
             class="w-10 h-10 rounded-full"
             height="40" width="40"/>
@@ -138,10 +138,10 @@
           routerLink="/group/3"
           class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third"
         ><img
-          src="./assets/images/group-img-3.jpg"
+          ngSrc="./assets/images/group-img-3.jpg"
           alt="Profile picture"
           class="w-10 h-10 rounded-lg"
-        />
+          height="50" width="50"/>
           <span class="font-semibold">Software Developer (Philippines)</span></a
         >
       </li>
@@ -223,50 +223,53 @@
               Your Story
             </span>
           <div class="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-            <img ngSrc="./assets/images/me.png" alt="Shane Del Moira" height="40" width="40">
+            <img ngSrc="{{loginAvatar}}" alt="Shane Del Moira" height="40" width="40">
           </div>
         </div>
 
         <div class="relative h-full group cursor-pointer">
-          <img src="./assets/images/story2.png" alt="Yor Story"
-               class="group-hover:transform group-hover:scale-110 transition-all duration-700 h-full w-full">
+          <img ngSrc="./assets/images/story2.png" alt="Yor Story"
+               class="group-hover:transform group-hover:scale-110 transition-all duration-700 h-full w-full"
+               height="1280" width="640">
 
           <div class="w-full h-full bg-black absolute top-0 left-0 bg-opacity-10"></div>
           <span class="absolute bottom-0 left-2 pb-2 font-semibold text-white">
               Yor Forger
             </span>
           <div class="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-            <img src="./assets/images/sp1.png" alt="Yor Forger">
+            <img ngSrc="./assets/images/sp1.png" alt="Yor Forger" height="40" width="40">
           </div>
         </div>
       </div>
 
       <div class="w-1/4 sm:w-1/5 h-44 rounded-xl overflow-hidden">
         <div class="relative h-full group cursor-pointer">
-          <img src="./assets/images/story3.png" alt="Neko Story"
-               class="group-hover:transform group-hover:scale-110 transition-all duration-700 h-full w-full">
+          <img ngSrc="./assets/images/story3.png" alt="Neko Story"
+               class="group-hover:transform group-hover:scale-110 transition-all duration-700 h-full w-full"
+               height="1280" width="640">
 
           <div class="w-full h-full bg-black absolute top-0 left-0 bg-opacity-10"></div>
           <span class="absolute bottom-0 left-2 pb-2 font-semibold text-white">
               Neko
             </span>
           <div class="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-            <img src="./assets/images/c7.png" alt="Neko">
+            <img ngSrc="./assets/images/c7.png" alt="Neko" height="40" width="40">
           </div>
         </div>
       </div>
 
       <div class="hidden sm:inline-block w-1/4 sm:w-1/5 h-44 rounded-xl overflow-hidden">
         <div class="relative h-full group cursor-pointer">
-          <img src="./assets/images/story4.png" alt="Sovieshu Story"
-               class="group-hover:transform group-hover:scale-110 transition-all duration-700 h-full w-full">
+          <img ngSrc="./assets/images/story4.png" alt="Sovieshu Story"
+               class="group-hover:transform group-hover:scale-110 transition-all duration-700 h-full w-full"
+               height="1280" width="640">
 
           <div class="w-full h-full bg-black absolute top-0 left-0 bg-opacity-10"></div>
           <span class="absolute bottom-0 left-2 pb-2 font-semibold text-white">
               Sovieshu
             </span>
           <div class="w-10 h-10 rounded-full overflow-hidden absolute top-2 left-2 border-4 border-blue-500">
-            <img src="./assets/images/sp2.png" alt="Sovieshu">
+            <img ngSrc="./assets/images/sp2.png" alt="Sovieshu" height="40" width="40">
           </div>
         </div>
       </div>
@@ -279,55 +282,37 @@
     </div>
 
     <!-- POST FORM -->
-    <form>
-      <div class="px-4 mt-4 shadow rounded-lg bg-white dark:bg-dark-second">
-        <div class="p-2 border-b border-gray-300 dark:border-dark-third flex space-x-4">
-          <img src="./assets/images/me.png" alt="Profile picture" class="w-10 h-10 rounded-full">
-          <div
-            class="flex-1 bg-gray-100 rounded-full flex items-center justify-start pl-4 cursor-pointer dark:bg-dark-third text-gray-500 text-sm lg:text-lg  dark:text-dark-txt">
-            <input type="text" placeholder="What's on your mind, Shane?" class="outline-none bg-transparent">
-
-          </div>
-        </div>
-        <div class="p-2 flex">
-          <div
-            class="w-1/3 flex sm:space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text-xl sm:text-3xl py-2 rounded-lg cursor-pointer text-red-500">
-            <i class="bx bxs-video-plus"></i>
-            <span class="text-xs sm:text-sm font-semibold text-gray-500 dark:text-dark-txt">Live video</span>
-          </div>
-          <div
-            class="w-1/3 flex sm:space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text-xl sm:text-3xl py-2 rounded-lg cursor-pointer text-green-500">
-            <i class="bx bx-images"></i>
-            <span class="text-xs sm:text-sm font-semibold text-gray-500 dark:text-dark-txt">Photo/video</span>
-          </div>
-          <div
-            class="w-1/3 flex sm:space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text-xl sm:text-3xl py-2 rounded-lg cursor-pointer text-yellow-500">
-            <i class='bx bx-happy-alt'></i>
-            <span class="text-xs sm:text-sm font-semibold text-gray-500 dark:text-dark-txt">Feeling/activity</span>
-          </div>
-        </div>
-      </div>
-    </form>
+    <app-post-form/>
 
     <!-- MY POSTS -->
     <div>
-
-      <!-- POST CONTENT -->
-      <div class="shadow bg-white dark:bg-dark-second dark:text-dark-txt mt-4 rounded-lg">
+      <div class="shadow bg-white dark:bg-dark-second dark:text-dark-txt mt-4 rounded-lg"
+           *ngFor="let post of postList">
 
         <div class="flex items-center justify-between px-4 py-2">
           <div class="flex space-x-2 items-center">
             <div class="relative">
-              <img ngSrc="./assets/images/me.png" alt="Profile picture" class="w-10 h-10 rounded-full cursor-pointer"
+              <img ngSrc="{{post.user.avatar}}" alt="Profile picture" class="w-10 h-10 rounded-full cursor-pointer"
                    height="40" width="40">
               <span class="bg-green-500 w-3 h-3 rounded-full absolute right-0 top-3/4 border-white border-2"></span>
             </div>
             <div>
               <div class="font-semibold hover:underline">
-                Do Chuan <i class='bx bxs-right-arrow text-gray-500'></i> Programming Philippines
-              </div>
-              <span class="text-sm text-gray-500 font-semibold hover:underline">April 17 at 5:49 PM · <i
-                class='bx bx-globe'></i></span>
+                {{post.user.name}}</div>
+              <span class="text-sm text-gray-500 font-semibold hover:underline">{{convertDate(post.postTime)}}
+                <i *ngIf="post.status=='PUBLIC'">
+                <i
+                  class='bx bx-globe'></i>Public
+              </i>
+                <i *ngIf="post.status=='FRIEND'">
+                <i
+                  class='bx bx-friend'></i>Friend
+              </i>
+                <i *ngIf="post.status=='PRIVATE'">
+                <i
+                  class='bx bx-globe'></i>Private
+              </i>
+                </span>
             </div>
 
           </div>
@@ -339,42 +324,30 @@
 
         <!-- CAPTION -->
         <div class="text-justify px-4 py-2">
-          Hello world
+          {{post.content}}
         </div>
 
-        <div class="py-2 cursor-pointer ">
-          <div class="grid grid-cols-2 gap-1">
-            <img ngSrc="./assets/images/bootstrap-web.jpg" alt="Bootstrap Website post" height="1152" width="2048">
-            <img ngSrc="./assets/images/post3.jpg" alt="Bootstrap Website post" height="624" width="624">
-            <img ngSrc="./assets/images/post4.jpg" alt="Boostrap Website post" height="623" width="623">
-            <img ngSrc="./assets/images/post2.jpg" alt="Bookstore website Post" class="w-full" height="405" width="720">
+        <!-- CAPTION -->
+        <div
+        class="row justify-content-start">
+          <div  *ngFor="let image of post.images">
+            <img ngSrc="{{image.urlImage}}" alt="Bootstrap Website post" height="624" width="624"
+                 class="col-lg-5 col-md-12"
+                 style="border: black solid 1px;border-radius: 10px;margin-bottom: 10px; width: 100%">
           </div>
-        </div>
-        <!-- VID -->
-        <div class="py-2 w-full flex items-align justify-center">
-          <iframe
-            src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fweb.facebook.com%2Fshanedelmoira.mantua.7%2Fvideos%2F1316500018845033%2F&show_text=false&width=560&t=0"
-            width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-            allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            allowFullScreen="true"></iframe>
         </div>
 
         <!-- REACTS -->
         <div class="px-4 py-2">
           <div class="flex items-center justify-between text-xs sm:text-lg ">
             <div class="flex flex-row-reverse items-center">
-              <span class="ml-2 text-gray-500 dark:text-dark-txt hover:underline">Lia Mantova and 34 others</span>
+              <span class="ml-2 text-gray-500 dark:text-dark-txt hover:underline">{{post.likes.length}} Likes</span>
               <span class="rounded-full grid place-items-center -ml-1 w-4 h-4 sm:w-7 sm:h-7 cursor-pointer">
-                   <img ngSrc="./assets/images/love.png" alt="Heart emoji" height="24" width="24">
-                 </span>
-              <span class="rounded-full grid place-items-center -ml-1 w-4 h-4 sm:w-7 sm:h-7 ">
-                   <img ngSrc="./assets/images/wow.png" alt="Wow emoji" height="24" width="24">
-                 </span>
+                         <img ngSrc="./assets/images/like.png" alt="Heart emoji" height="24" width="24">
+                       </span>
             </div>
             <div class="text-gray-500 drak:text-dark-txt ">
-              <span class="hover:underline">7 comments</span>
-              <span class="font-semibold">·</span>
-              <span class="hover:underline">4 shares</span>
+              <span class="hover:underline">{{post.comments.length}} comments</span>
             </div>
           </div>
         </div>
@@ -384,6 +357,16 @@
           <div class="border border-gray-200 dark:border-dark-third border-l-0 border-r-0 py-1">
             <div class="flex space-x-2">
               <div
+                (click)="likePost(post.id)"
+                *ngIf="checkLikeStatus(post)"
+                style="color: #0d2be8;font-weight: 1000"
+                class="w-1/3 flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text-xl py-2 rounded-lg cursor-pointer text-gray-500 dark:text-dark-txt">
+                <i class="bx bx-like"></i>
+                <span style="font-size: medium" class="text-sm font-semibold">Like</span>
+              </div>
+              <div
+                (click)="likePost(post.id)"
+                *ngIf="!checkLikeStatus(post)"
                 class="w-1/3 flex space-x-2 justify-center items-center hover:bg-gray-100 dark:hover:bg-dark-third text-xl py-2 rounded-lg cursor-pointer text-gray-500 dark:text-dark-txt">
                 <i class="bx bx-like"></i>
                 <span class="text-sm font-semibold">Like</span>
@@ -405,50 +388,20 @@
         <!-- COMMENTS -->
         <div class="py-2 px-4">
 
-          <!-- 1st comment -->
-          <div class="flex space-x-2">
+          <!-- List Comment -->
+          <div class="flex space-x-2" *ngFor="let comment of post.comments">
 
-            <img src="./assets/images/c1.png" alt="Profile picture" class="w-9 h-9 rounded-full cursor-pointer">
+            <img ngSrc="{{comment.user.avatar}}" alt="Profile picture" class="w-9 h-9 rounded-full cursor-pointer"
+                 height="40" width="40">
             <div>
               <div class="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                <span class="font-semibold block hover:underline">Zurick Buita</span>
-                <img src="./assets/images/wow.gif" alt="wow gif" class="rounded-xl mt-4 cursor-pointer">
+                <span class="font-semibold block hover:underline">{{comment.user.name}}</span>
+                <span style="display: inline-block;"> {{comment.comment}}</span>
               </div>
               <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
                 <span class="font-semibold hover:underline ">Like</span>
                 <span class="font-semibold hover:underline pl-4">Reply</span>
                 <span class="font-semibold hover:underline pl-4">1w</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2nd Comment -->
-          <div class="flex space-x-2">
-
-            <img src="./assets/images/c1.png" alt="Profile picture" class="w-9 h-9 rounded-full cursor-pointer">
-            <div>
-              <div class="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                <span class="font-semibold block hover:underline">Andre Jarl</span>
-                <span> how many months have you been coding?</span>
-              </div>
-              <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
-                <span class="font-semibold hover:underline ">Like</span>
-                <span class="font-semibold hover:underline pl-4">Reply</span>
-                <span class="font-semibold hover:underline pl-4">1w</span>
-              </div>
-              <div class="flex space-x-2">
-                <img src="./assets/images/me.png" alt="Profile picture" class="w-9 h-9 rounded-full cursor-pointer">
-                <div>
-                  <div class="bg-gray-100 dark:bg-dark-third p-2 rounded-2xl text-sm">
-                    <span class="font-semibold block hover:underline">Shane Del Moira ʚMåntüâɞ</span>
-                    <span> I started learning web development in July 2021 but at that time I don't have any device to code so all I did was just keep reading. The time I actually started coding was on March 14 2022 since that's the time I started making my portfolio which is my first website.  </span>
-                  </div>
-                  <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
-                    <span class="font-semibold hover:underline ">Like</span>
-                    <span class="font-semibold hover:underline pl-4">Reply</span>
-                    <span class="font-semibold hover:underline pl-4">1w</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -456,14 +409,15 @@
           <!-- POST comment -->
           <div class="py-2 sm:px-4">
             <div class="flex ">
-              <img src="./assets/images/me.png" alt="Profile picture" class="w-9 h-9 rounded-full cursor-pointer">
+              <img ngSrc="{{loginAvatar}}" alt="Profile picture" class="w-9 h-9 rounded-full cursor-pointer"
+                   height="40" width="40">
               <div class="flex-1 flex bg-gray-100 dark:bg-dark-third rounded-full items-center justify-between px-3">
                 <input type="text" placeholder="Write a comment..."
                        class="outline-none bg-transparent flex-1 text-xs sm:text-sm">
                 <div class="flex space-x-0 items-center justify-center">
-                  <span
-                    class="sm:w-7 sm:h-7 grid place-items-center rounded-full hover:bg-gray-200 cursor-pointer text-gray-500 dark:text-dark-txt dark:hover:bg-dark-second text-xl"><i
-                    class="bx bx-smile"></i></span>
+                        <span
+                          class="sm:w-7 sm:h-7 grid place-items-center rounded-full hover:bg-gray-200 cursor-pointer text-gray-500 dark:text-dark-txt dark:hover:bg-dark-second text-xl"><i
+                          class="bx bx-smile"></i></span>
                   <span
                     class="sm:w-7 sm:h-7 grid place-items-center rounded-full hover:bg-gray-200 cursor-pointer text-gray-500 dark:text-dark-txt dark:hover:bg-dark-second text-xl"><i
                     class="bx bx-camera"></i></span>
@@ -480,6 +434,23 @@
 
         </div>
       </div>
+    </div>
+
+    <!-- LOAD MORE -->
+    <div class="shadow bg-white dark:bg-dark-second dark:text-dark-txt mt-4 rounded-lg"
+         style="text-align: center"
+    >
+      <button class="btn btn-primary"
+              style="width: 100%"
+              (click)="loadModePost()"
+              *ngIf="loadAble"
+      >Load more
+      </button>
+      <button class="btn btn-danger"
+              style="width: 100%"
+              *ngIf="!loadAble"
+      >End of Posts
+      </button>
     </div>
   </div>
 
@@ -499,7 +470,8 @@
       <div class="p-2">
         <div
           class="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third rounded-lg transition-all">
-          <img src="./assets/images/add.png" alt="Profile picture" class="w-16 h-16 rounded-full">
+          <img ngSrc="./assets/images/add.png" alt="Profile picture" class="w-16 h-16 rounded-full" height="40"
+               width="40">
           <div class="flex-1 h-full">
             <div class="dark:text-dark-txt">
               <a routerLink="/user/1">
@@ -548,7 +520,7 @@
           <div
             class="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
             <div class="relative">
-              <img src="./assets/images/c3.png" alt="Online Friend" class="rounded-full">
+              <img ngSrc="./assets/images/c3.png" alt="Online Friend" class="rounded-full" height="40" width="40">
               <span class="bg-green-500 w-3 h-3 rounded-full absolute right-0 top-3/4 border-white border-2"></span>
             </div>
             <div>
@@ -561,7 +533,7 @@
           <div
             class="flex items-center space-x-4 p-2 hover:bg-gray-200 dark:hover:bg-dark-third dark:text-dark-txt rounded-lg cursor-pointer">
             <div class="relative">
-              <img src="./assets/images/c2.png" alt="Online Friend" class="rounded-full">
+              <img ngSrc="./assets/images/c2.png" alt="Online Friend" class="rounded-full" height="40" width="40">
               <span class="bg-green-500 w-3 h-3 rounded-full absolute right-0 top-3/4 border-white border-2"></span>
             </div>
             <div>
