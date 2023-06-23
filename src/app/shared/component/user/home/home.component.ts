@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   page = {page: 0, size: 3}
   public loginAvatar: any = "";
   public userName: any = "";
-  public email = "";
   public user?: User;
   public loadAble = true;
   public totalElements = 0;
@@ -59,7 +58,7 @@ export class HomeComponent implements OnInit {
   }
 
   convertDate(date: any) {
-    return new Date(date).toLocaleString('us-US', {timeZone: 'UTC'});
+    return new Date(date).toLocaleString('us-US', {timeZone: 'Asia/Ho_Chi_Minh'});
   }
 
   checkLikeStatus(post: Post) {

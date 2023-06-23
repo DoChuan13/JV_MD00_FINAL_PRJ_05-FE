@@ -23,8 +23,8 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {MatInputModule} from "@angular/material/input";
-import { Error403Component } from './shared/component/common/error403/error403.component';
-import { PostDialogComponent } from './shared/component/element/post-dialog/post-dialog.component';
+import {Error403Component} from './shared/component/common/error403/error403.component';
+import {PostDialogComponent} from './shared/component/element/post-dialog/post-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import { PostFormComponent } from './shared/component/element/post-form/post-form.component';
@@ -52,22 +52,22 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     UploadMultiComponent
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        NgOptimizedImage,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        AngularFireStorageModule,
-        HttpClientModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        MatInputModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatIconModule,
-        MatProgressSpinnerModule
+      BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      NgOptimizedImage,
+      ReactiveFormsModule,
+      BrowserAnimationsModule,
+      MatCardModule,
+      AngularFireStorageModule,
+      HttpClientModule,
+      MatInputModule,
+      MatDialogModule,
+      MatButtonModule,
+      MatSelectModule,
+      MatIconModule,
+      MatProgressSpinnerModule,
+      AngularFireModule.initializeApp(environment.firebaseConfig),
     ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

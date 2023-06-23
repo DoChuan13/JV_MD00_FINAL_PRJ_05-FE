@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {PostDTO} from "../../../../core/model/PostDTO";
 import {PostService} from "../../../../service/post/post.service";
 import {Image} from "../../../../core/model/basic/Image";
+import {Router} from "@angular/router";
+import {HomeComponent} from "../../user/home/home.component";
 
 @Component({
   selector: 'app-post-dialog',
@@ -23,7 +25,8 @@ export class PostDialogComponent {
   private postDTO?: PostDTO;
 
   constructor(private formBuilder: FormBuilder,
-              private postService: PostService) {
+              private postService: PostService,
+              private router: Router) {
   }
 
   createNewPost() {
@@ -34,6 +37,7 @@ export class PostDialogComponent {
     );
     this.postService.createNewPost(this.postDTO).subscribe(data=>{
       console.log(data)
+      window.location.reload()
     })
   }
 
