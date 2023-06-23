@@ -1,9 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {PostDialogComponent} from "../post-dialog/post-dialog.component";
 import {User} from "../../../../core/model/basic/User";
-import {PostService} from "../../../../service/post/post.service";
-import {TokenService} from "../../../../service/token/token.service";
 
 @Component({
   selector: 'app-post-form',
@@ -11,29 +9,25 @@ import {TokenService} from "../../../../service/token/token.service";
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
-  public loginAvatar: any = "";
-  public userName: any = "";
+  @Output() reRenderParent = new EventEmitter<any>();
+  @Input() loginAvatar?: string;
+  @Input() userName?: string;
   public user?: User;
 
 
-  constructor(public dialog: MatDialog,
-              private postService: PostService,
-              private tokenService: TokenService) {
+  constructor(public dialog: MatDialog) {
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(PostDialogComponent);
+    dialogRef.componentInstance.reRenderParent.subscribe(data => {
+      this.reRenderParent.emit(data);
+    })
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
   ngOnInit(): void {
-    this.firstLoadInfo();
-  }
-
-  private firstLoadInfo() {
-    this.loginAvatar = this.tokenService.getAvatar();
-    this.userName = this.tokenService.getName();
   }
 }

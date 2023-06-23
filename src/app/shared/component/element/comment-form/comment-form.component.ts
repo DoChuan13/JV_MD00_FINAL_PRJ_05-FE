@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from "../../../../core/model/basic/User";
 import {MatDialog} from "@angular/material/dialog";
 import {PostService} from "../../../../service/post/post.service";
@@ -11,9 +11,10 @@ import {CommentDialogComponent} from "../comment-dialog/comment-dialog.component
   styleUrls: ['./comment-form.component.scss']
 })
 export class CommentFormComponent implements OnInit {
+  @Output() reRenderParent = new EventEmitter<any>();
   @Input() postId?: any;
-  public loginAvatar: any = "";
-  public userName: any = "";
+  @Input() loginAvatar: any = "";
+  @Input() userName: any = "";
   public user?: User;
 
 
@@ -28,17 +29,14 @@ export class CommentFormComponent implements OnInit {
         id: this.postId
       }
     });
+    dialogRef.componentInstance.reRenderParent.subscribe(data => {
+      this.reRenderParent.emit(data);
+    })
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
   ngOnInit(): void {
-    this.firstLoadInfo();
-  }
-
-  private firstLoadInfo() {
-    this.loginAvatar = this.tokenService.getAvatar();
-    this.userName = this.tokenService.getName();
   }
 }

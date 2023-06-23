@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {CommentDTO} from "../../../../core/model/CommentDTO";
 import {CommentService} from "../../../../service/comment/comment.service";
@@ -10,6 +10,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
   styleUrls: ['./comment-dialog.component.scss']
 })
 export class CommentDialogComponent implements OnInit {
+  @Output() reRenderParent = new EventEmitter<any>();
   public form = this.formBuilder.group({
     comment: ['', [Validators.required]]
   })
@@ -37,7 +38,8 @@ export class CommentDialogComponent implements OnInit {
     );
     this.commentService.createNewComment(this.commentDTO).subscribe(data => {
       console.log(data)
-      window.location.reload()
+      this.reRenderParent.emit({refresh: true});
+      /*window.location.reload()*/
     })
   }
 }

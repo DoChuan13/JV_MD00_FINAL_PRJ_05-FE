@@ -101,5 +101,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  reRenderParent() {
+    console.log("Hehehe")
+  }
 }
 

@@ -282,7 +282,7 @@
     </div>
 
     <!-- POST FORM -->
-    <app-post-form/>
+    <app-post-form [loginAvatar]="loginAvatar" [userName]="userName" (reRenderParent)="reRenderData()"/>
 
     <!-- MY POSTS -->
     <div>
@@ -408,7 +408,7 @@
           </div>
 
           <!-- POST comment -->
-      <app-comment-form [postId]="post.id"/>
+      <app-comment-form [postId]="post.id" [loginAvatar]="loginAvatar" [userName]="userName" (reRenderParent)="reRenderData()"/>
 
         </div>
       </div>

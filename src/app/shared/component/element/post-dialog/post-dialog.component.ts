@@ -1,10 +1,8 @@
-import {Component, Inject} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {PostDTO} from "../../../../core/model/PostDTO";
 import {PostService} from "../../../../service/post/post.service";
 import {Image} from "../../../../core/model/basic/Image";
-import {Router} from "@angular/router";
-import {HomeComponent} from "../../user/home/home.component";
 
 @Component({
   selector: 'app-post-dialog',
@@ -12,6 +10,7 @@ import {HomeComponent} from "../../user/home/home.component";
   styleUrls: ['./post-dialog.component.scss']
 })
 export class PostDialogComponent {
+  @Output() reRenderParent = new EventEmitter<any>();
   public form = this.formBuilder.group({
     status: ['', [Validators.required]],
     content: ['', [Validators.required]]
@@ -25,8 +24,7 @@ export class PostDialogComponent {
   private postDTO?: PostDTO;
 
   constructor(private formBuilder: FormBuilder,
-              private postService: PostService,
-              private router: Router) {
+              private postService: PostService) {
   }
 
   createNewPost() {
@@ -35,9 +33,10 @@ export class PostDialogComponent {
       this.form.value.status,
       this.imagesList
     );
-    this.postService.createNewPost(this.postDTO).subscribe(data=>{
+    this.postService.createNewPost(this.postDTO).subscribe(data=> {
       console.log(data)
-      window.location.reload()
+      this.reRenderParent.emit({refresh: true});
+      // window.location.reload()
     })
   }
 
