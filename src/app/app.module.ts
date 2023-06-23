@@ -32,6 +32,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { UploadMultiComponent } from './feature/upload/upload-multi/upload-multi.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { CommentFormComponent } from './shared/component/element/comment-form/comment-form.component';
+import { CommentDialogComponent } from './shared/component/element/comment-dialog/comment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     Error403Component,
     PostDialogComponent,
     PostFormComponent,
-    UploadMultiComponent
+    UploadMultiComponent,
+    CommentFormComponent,
+    CommentDialogComponent
   ],
     imports: [
       BrowserModule,
