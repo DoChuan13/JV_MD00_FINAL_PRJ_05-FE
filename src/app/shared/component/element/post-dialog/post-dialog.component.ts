@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {PostDTO} from "../../../../core/model/PostDTO";
 import {PostService} from "../../../../service/post/post.service";
 import {Image} from "../../../../core/model/basic/Image";
+import {CommonService} from "../../../../service/common/common.service";
+import {Const} from "../../../../core/constant/Const";
 
 @Component({
   selector: 'app-post-dialog',
@@ -24,7 +26,8 @@ export class PostDialogComponent {
   private postDTO?: PostDTO;
 
   constructor(private formBuilder: FormBuilder,
-              private postService: PostService) {
+              private postService: PostService,
+              private commonService: CommonService) {
   }
 
   createNewPost() {
@@ -36,6 +39,7 @@ export class PostDialogComponent {
     this.postService.createNewPost(this.postDTO).subscribe(data=> {
       console.log(data)
       this.reRenderParent.emit({refresh: true});
+      this.commonService.detectChange = Const.CREATE_POST;
       // window.location.reload()
     })
   }

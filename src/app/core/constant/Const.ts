@@ -7,4 +7,11 @@ export class Const {
   public static USER = "USER";
   public static ADMIN = "ADMIN";
   public static PM = "PM";
+  public static CREATE_POST = "Create Post Success!!!";
+  public static UPDATE_POST = "Update Post Success!!!";
+  public static DELETE_POST = "Delete Post Success!!!";
+  public static CREATE_COMMENT = "Create Comment Success!!!";
+  public static UPDATE_COMMENT = "Update Comment Success!!!";
+  public static DELETE_COMMENT = "Delete Comment Success!!!";
+
 }

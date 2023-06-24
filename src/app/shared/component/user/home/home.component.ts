@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {PostService} from "../../../../service/post/post.service";
 import {Post} from "../../../../core/model/basic/Post";
 import {TokenService} from "../../../../service/token/token.service";
 import {LikeService} from "../../../../service/like/like.service";
 import {UserService} from "../../../../service/user/user.service";
 import {User} from "../../../../core/model/basic/User";
+import {CommonService} from "../../../../service/common/common.service";
+import {Const} from "../../../../core/constant/Const";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,7 @@ import {User} from "../../../../core/model/basic/User";
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, DoCheck {
   page = {page: 0, size: 3}
   public loginAvatar: any = "";
   public userName: any = "";
@@ -24,7 +26,8 @@ export class HomeComponent implements OnInit {
   constructor(private postService: PostService,
               private tokenService: TokenService,
               private likeService: LikeService,
-              private userService: UserService) {
+              private userService: UserService,
+              private commonService: CommonService) {
   }
 
   ngOnInit(): void {
@@ -58,7 +61,8 @@ export class HomeComponent implements OnInit {
   }
 
   convertDate(date: any) {
-    return new Date(date).toLocaleString('us-US', {timeZone: 'Asia/Ho_Chi_Minh'});
+    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return new Date(date).toLocaleString('us-US', {timeZone: timezone});
   }
 
   checkLikeStatus(post: Post) {
@@ -101,8 +105,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  reRenderParent() {
-    console.log("Hehehe")
+  ngDoCheck(): void {
+    const change = this.commonService.detectChange;
+    if (change == Const.CREATE_POST ||
+      change == Const.UPDATE_POST ||
+      change == Const.DELETE_POST ||
+      change == Const.CREATE_COMMENT ||
+      change == Const.UPDATE_COMMENT ||
+      change == Const.DELETE_COMMENT) {
+      console.log("Do check==> have changed")
+      this.commonService.detectChange = undefined;
+      this.reRenderData()
+    }
   }
 }
 

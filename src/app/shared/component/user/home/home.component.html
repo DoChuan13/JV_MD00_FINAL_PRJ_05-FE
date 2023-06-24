@@ -14,7 +14,7 @@
             alt="Profile picture"
             class="w-10 h-10 rounded-full"
             height="40" width="40"/>
-          <span class="font-semibold">Do Chuan</span>
+          <span class="font-semibold">{{userName}}</span>
         </a>
       </li>
       <li>
@@ -282,8 +282,8 @@
     </div>
 
     <!-- POST FORM -->
-    <app-post-form [loginAvatar]="loginAvatar" [userName]="userName" (reRenderParent)="reRenderData()"/>
-
+    <app-post-form [loginAvatar]="loginAvatar" [userName]="userName"/>
+    <!--(reRenderParent)="reRenderData()"-->
     <!-- MY POSTS -->
     <div>
       <div class="shadow bg-white dark:bg-dark-second dark:text-dark-txt mt-4 rounded-lg"
@@ -402,13 +402,14 @@
               <div class="p-2 text-xs text-gray-500 dark:text-dark-txt">
                 <span class="font-semibold hover:underline ">Like</span>
                 <span class="font-semibold hover:underline pl-4">Reply</span>
-                <span class="font-semibold hover:underline pl-4">1w</span>
+                <span class="font-semibold hover:underline pl-4">{{convertDate(comment.commentTime)}}</span>
               </div>
             </div>
           </div>
 
           <!-- POST comment -->
-      <app-comment-form [postId]="post.id" [loginAvatar]="loginAvatar" [userName]="userName" (reRenderParent)="reRenderData()"/>
+          <app-comment-form [postId]="post.id" [loginAvatar]="loginAvatar" [userName]="userName"/>
+          <!--(reRenderParent)="reRenderData()"-->
 
         </div>
       </div>
