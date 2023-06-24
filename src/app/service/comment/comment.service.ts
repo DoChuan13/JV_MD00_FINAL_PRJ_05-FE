@@ -16,4 +16,12 @@ export class CommentService {
     console.log("Create New Post!!!");
     return this.service.postDatabase(Api.COMMENT, comment);
   }
+   public editCurrentComment(comment: CommentDTO,id:any): Observable<any> {
+    console.log("Edit current Post!!!");
+    return this.service.putDatabase(Api.COMMENT,id, comment);
+  }
+  public deleteCurrentComment(id:any): Observable<any> {
+    console.log("Edit current Post!!!");
+    return this.service.deleteDatabase(Api.COMMENT,id);
+  }
 }

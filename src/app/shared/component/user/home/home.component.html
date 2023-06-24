@@ -306,19 +306,21 @@
               </i>
                 <i *ngIf="post.status=='FRIEND'">
                 <i
-                  class='bx bx-friend'></i>Friend
+                  class='bx bx-user-check'></i>Friend
               </i>
                 <i *ngIf="post.status=='PRIVATE'">
                 <i
-                  class='bx bx-globe'></i>Private
+                  class='bx bx-lock-alt'></i>Private
               </i>
                 </span>
             </div>
 
           </div>
           <div
-            class="w-8h-8 grid place-items-center text-xl text-gray-500  hover:bg-gray-200 dark:text-dark-txt dark:hover:bg-dark-third rounded-full cursor-pointer">
-            <i class="bx bx-dots-horizontal-rounded"></i>
+            class="w-8h-8 grid place-items-center text-xl text-gray-500  hover:bg-gray-200 dark:text-dark-txt dark:hover:bg-dark-third rounded-full cursor-pointer"
+            *ngIf="checkOwnPost(post)">
+            <i class="bx bx-edit-alt" (click)="openEditPostDialog(post)"></i>
+            <i class="bx bx-x-circle" (click)="openConfirmPostDialog(post)"></i>
           </div>
         </div>
 
@@ -389,7 +391,9 @@
         <div class="py-2 px-4">
 
           <!-- List Comment -->
-          <div class="flex space-x-2" *ngFor="let comment of post.comments"
+          <div
+            style="position: relative"
+            class="flex space-x-2" *ngFor="let comment of post.comments"
           >
 
             <img ngSrc="{{comment.user.avatar}}" alt="Profile picture" class="w-9 h-9 rounded-full cursor-pointer"
@@ -404,6 +408,13 @@
                 <span class="font-semibold hover:underline pl-4">Reply</span>
                 <span class="font-semibold hover:underline pl-4">{{convertDate(comment.commentTime)}}</span>
               </div>
+            </div>
+            <div
+              style="position: absolute;right: 10px;top:10px"
+              class="w-8h-8 grid place-items-center text-xl text-gray-500  hover:bg-gray-200 dark:text-dark-txt dark:hover:bg-dark-third rounded-full cursor-pointer"
+              *ngIf="checkOwnComment(comment)">
+              <i class="bx bx-edit-alt" (click)="openEditCommentDialog(comment)"></i>
+              <i class="bx bx-x-circle" (click)="openConfirmCommentDialog(comment)"></i>
             </div>
           </div>
 

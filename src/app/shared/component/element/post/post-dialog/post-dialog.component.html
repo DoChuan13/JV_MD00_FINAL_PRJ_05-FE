@@ -1,24 +1,36 @@
-<h1 mat-dialog-title style="text-align: center">Comment Form</h1>
+<h1 mat-dialog-title style="text-align: center">Create Post Form</h1>
 <mat-dialog-content class="mat-typography" style="min-width: calc(100vw*0.8)">
   <div class="container">
     <div class="row">
       <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
         <mat-card style="margin: 0">
-          <form class="form-angular" #f="ngForm" [formGroup]="form" (ngSubmit)="f.form.valid&&createNewComment(12)">
+          <form class="form-angular" #f="ngForm" [formGroup]="form" (ngSubmit)="f.form.valid&&createNewPost()">
+            <mat-form-field appearance="fill" style="display:block; width: 100%">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option *ngFor="let status of status" [value]="status.status">
+                  {{status.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-error *ngIf="form.controls.status.hasError('required')">This field is not Empty</mat-error>
+
+            <br/>
             <mat-form-field class="example-full-width" appearance="fill" style="display:block; width: 100%">
               <mat-label>Write a content</mat-label>
-              <textarea matInput placeholder="What's on your comment..."
-                        formControlName="comment"></textarea>
+              <textarea matInput placeholder="What's on your mind..."
+                        formControlName="content"></textarea>
             </mat-form-field>
-            <mat-error *ngIf="form.controls.comment.hasError('required')">This field is not Empty</mat-error>
+            <mat-error *ngIf="form.controls.status.hasError('required')">This field is not Empty</mat-error>
 
+            <app-upload-multi (giveURLtoCreate)="onUpload($event)"/>
             <mat-dialog-actions align="center">
               <button type="submit" mat-stroked-button color="accent"
                       class="mat-button-toggle-group btn-outline-primary btn btn-primary"
-                      style="width: 100%"
-                      [mat-dialog-close]="false"
-                      *ngIf="form.valid">
-                Create Comment
+              style="width: 100%"
+              [mat-dialog-close]="false"
+              *ngIf="form.valid">
+                Create Post
                 <mat-icon color="accent" matSuffix>send</mat-icon>
               </button>
               <button type="submit" mat-stroked-button color="accent"
@@ -26,7 +38,7 @@
                       style="width: 100%"
                       [mat-dialog-close]="false" disabled
                       *ngIf="!form.valid">
-                Create Comment
+                Create Post
                 <mat-icon color="accent" matSuffix>send</mat-icon>
               </button>
             </mat-dialog-actions>

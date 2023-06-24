@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {PostDTO} from "../../../../core/model/PostDTO";
-import {PostService} from "../../../../service/post/post.service";
-import {Image} from "../../../../core/model/basic/Image";
-import {CommonService} from "../../../../service/common/common.service";
-import {Const} from "../../../../core/constant/Const";
+import {PostDTO} from "../../../../../core/model/PostDTO";
+import {PostService} from "../../../../../service/post/post.service";
+import {Image} from "../../../../../core/model/basic/Image";
+import {CommonService} from "../../../../../service/common/common.service";
+import {Const} from "../../../../../core/constant/Const";
 
 @Component({
   selector: 'app-post-dialog',

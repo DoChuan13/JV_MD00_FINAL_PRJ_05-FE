@@ -27,15 +27,16 @@
           class="outline-none bg-transparent hidden xl:inline-block"
         />
       </div>
-      <div
-        class="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt relative"
-      >
-        <i class="bx bxl-messenger"></i>
-        <span
-          class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"
-        >2</span
+      <a routerLink="/chat" style="text-decoration: none">
+        <div
+          class="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt relative"
         >
-      </div>
+          <i class="bx bxl-messenger"></i>
+          <!--<span
+            class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"
+          >2</span>-->
+        </div>
+      </a>
       <div
         class="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt"
         (click)="logout()"
@@ -78,10 +79,9 @@
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
         <i class='bx bx-slideshow'></i>
-        <span
+        <!--<span
           class="text-xs absolute top-0 right-1/4 bg-red-500 text-white font-semibold rounded-full px-1 text-center"
-        >9+</span
-        >
+        >9+</span>-->
       </a>
     </li>
 
@@ -109,10 +109,9 @@
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
         <i class="bx bx-bell"></i>
-        <span
+        <!--<span
           class="text-xs absolute top-0 right-1/4 bg-red-500 text-white font-semibold rounded-full px-1 text-center"
-        >9+</span
-        >
+        >9+</span>-->
       </a>
     </li>
 
@@ -152,15 +151,16 @@
     </li>
 
     <li>
-      <div
-        class="text-xl grid place-items-center bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative"
-      >
-        <i class="bx bxl-messenger"></i>
-        <span
-          class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"
-        >2</span
+      <a routerLink="/chat" style="text-decoration: none">
+        <div
+          class="text-xl grid place-items-center bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative"
         >
-      </div>
+          <i class="bx bxl-messenger"></i>
+          <!--<span
+            class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"
+          >2</span>-->
+        </div>
+      </a>
     </li>
 
     <li>
@@ -168,10 +168,9 @@
         class="text-xl grid place-items-center bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative"
       >
         <i class="bx bxs-bell"></i>
-        <span
+        <!--<span
           class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"
-        >9+</span
-        >
+        >9+</span>-->
       </div>
     </li>
 

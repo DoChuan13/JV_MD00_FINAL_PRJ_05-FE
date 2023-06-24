@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, EventEmitter, OnInit, Output} from '@angular/core';
 import {PostService} from "../../../../service/post/post.service";
 import {Post} from "../../../../core/model/basic/Post";
 import {TokenService} from "../../../../service/token/token.service";
@@ -7,6 +7,11 @@ import {UserService} from "../../../../service/user/user.service";
 import {User} from "../../../../core/model/basic/User";
 import {CommonService} from "../../../../service/common/common.service";
 import {Const} from "../../../../core/constant/Const";
+import {MatDialog} from "@angular/material/dialog";
+import {EditPostDialogComponent} from "../../element/post/edit-post-dialog/edit-post-dialog.component";
+import {ConfirmDialogComponent} from "../../element/confirm-dialog/confirm-dialog.component";
+import {EditCommentDialogComponent} from "../../element/commen/edit-comment-dialog/edit-comment-dialog.component";
+import {Comment} from "../../../../core/model/basic/Comment";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +20,7 @@ import {Const} from "../../../../core/constant/Const";
 })
 
 export class HomeComponent implements OnInit, DoCheck {
+  @Output() reRenderParent = new EventEmitter<any>();
   page = {page: 0, size: 3}
   public loginAvatar: any = "";
   public userName: any = "";
@@ -27,7 +33,8 @@ export class HomeComponent implements OnInit, DoCheck {
               private tokenService: TokenService,
               private likeService: LikeService,
               private userService: UserService,
-              private commonService: CommonService) {
+              private commonService: CommonService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -75,6 +82,11 @@ export class HomeComponent implements OnInit, DoCheck {
     return false;
   }
 
+  checkOwnPost(post: Post): boolean {
+    return post.user.id == this.user?.id;
+
+  }
+
   likePost(id: number | undefined) {
     let like = {post: {id: id}}
     console.log(like)
@@ -118,5 +130,66 @@ export class HomeComponent implements OnInit, DoCheck {
       this.reRenderData()
     }
   }
+
+  openEditPostDialog(post: any) {
+    const dialogRef = this.dialog.open(EditPostDialogComponent,
+      {
+        data:
+          {value: post}
+      });
+    dialogRef.componentInstance.reRenderParent.subscribe(data => {
+      this.reRenderParent.emit(data);
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openEditCommentDialog(post: any) {
+    const dialogRef = this.dialog.open(EditCommentDialogComponent,
+      {
+        data:
+          {value: post}
+      });
+    dialogRef.componentInstance.reRenderParent.subscribe(data => {
+      this.reRenderParent.emit(data);
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openConfirmPostDialog(post: Post) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,
+      {
+        data:
+          {post: post}
+      });
+    dialogRef.componentInstance.reRenderParent.subscribe(data => {
+      this.reRenderParent.emit(data);
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openConfirmCommentDialog(comment: Comment) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,
+      {
+        data:
+          {comment: comment}
+      });
+    dialogRef.componentInstance.reRenderParent.subscribe(data => {
+      this.reRenderParent.emit(data);
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  checkOwnComment(comment: Comment): boolean {
+    return this.user?.id == comment.user.id;
+  }
+
 }
 

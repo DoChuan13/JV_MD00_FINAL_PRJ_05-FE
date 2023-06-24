@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WebSocketAPI} from "../../../../service/websocket/WebSocketAPI";
+import {chatJs} from "../../../../../assets/js/Javascrip";
 
 @Component({
   selector: 'app-chat',
@@ -16,6 +17,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.webSocketAPI = new WebSocketAPI(new ChatComponent());
     this.connect();
+    chatJs();
   }
 
   connect() {

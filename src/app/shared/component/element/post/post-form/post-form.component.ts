@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {PostDialogComponent} from "../post-dialog/post-dialog.component";
-import {User} from "../../../../core/model/basic/User";
+import {User} from "../../../../../core/model/basic/User";
 
 @Component({
   selector: 'app-post-form',

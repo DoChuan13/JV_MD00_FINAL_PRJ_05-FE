@@ -1,0 +1,56 @@
+<h1 mat-dialog-title style="text-align: center">Edit Post Form</h1>
+<mat-dialog-content class="mat-typography" style="min-width: calc(100vw*0.8)">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+        <mat-card style="margin: 0">
+          <form class="form-angular" #f="ngForm" [formGroup]="form" (ngSubmit)="f.form.valid&&editCurrentPost()">
+            <mat-form-field appearance="fill" style="display:block; width: 100%">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option *ngFor="let status of status" [value]="status.status">
+                  {{status.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-error *ngIf="form.controls.status.hasError('required')">This field is not Empty</mat-error>
+
+            <br/>
+            <mat-form-field class="example-full-width" appearance="fill" style="display:block; width: 100%">
+              <mat-label>Write a content</mat-label>
+              <textarea matInput placeholder="What's on your mind..."
+                        formControlName="content"></textarea>
+            </mat-form-field>
+            <mat-error *ngIf="form.controls.status.hasError('required')">This field is not Empty</mat-error>
+
+            <app-upload-multi (giveURLtoCreate)="onUpload($event)"/>
+            <div class="row" *ngIf="defaultImage">
+              <div *ngFor="let image of imagesList"
+                   style="margin-bottom: 10px; margin-top: 10px;display: inline-block;width: 150px">
+                <img [src]="image.urlImage" style="width: 150px; height: auto;" alt="avatar">
+              </div>
+            </div>
+            <mat-dialog-actions align="center">
+              <button type="submit" mat-stroked-button color="accent"
+                      class="mat-button-toggle-group btn-outline-primary btn btn-primary"
+                      style="width: 100%"
+                      [mat-dialog-close]="false"
+                      *ngIf="form.valid">
+                Edit Post
+                <mat-icon color="accent" matSuffix>send</mat-icon>
+              </button>
+              <button type="submit" mat-stroked-button color="accent"
+                      class="mat-button-toggle-group btn-outline-primary btn btn-primary"
+                      style="width: 100%"
+                      [mat-dialog-close]="false" disabled
+                      *ngIf="!form.valid">
+                Edit Post
+                <mat-icon color="accent" matSuffix>send</mat-icon>
+              </button>
+            </mat-dialog-actions>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

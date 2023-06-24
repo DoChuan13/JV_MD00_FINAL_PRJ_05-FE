@@ -1,4 +1,5 @@
 export class CommentDTO {
+  public id?:number;
   public comment: string;
   public post: any
 

@@ -1,0 +1,34 @@
+<h1 mat-dialog-title style="text-align: center">Confirm Delete Content</h1>
+<mat-dialog-content class="mat-typography" style="min-width: calc(100vw*0.8)">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+        <mat-card style="margin: 0">
+          <form class="form-angular">
+            <mat-card class="example-full-width" style="display:block; width: 100%">
+              <p style="text-align: center">Are you sure want to delete this content? </p>
+            </mat-card>
+
+            <mat-dialog-actions align="center">
+              <button type="submit" mat-stroked-button color="accent"
+                      class="mat-button-toggle-group btn-outline-primary btn btn-dark"
+                      style="width: 49%;display: inline-block"
+                      [mat-dialog-close]="false">
+                Cancel
+                <mat-icon color="accent" matSuffix>cancel</mat-icon>
+              </button>
+              <button type="submit" mat-stroked-button color="accent"
+                      class="mat-button-toggle-group btn-outline-primary btn btn-danger"
+                      style="width: 49%;display: inline-block"
+                      [mat-dialog-close]="false"
+              (click)="confirmAction()">
+                Ok
+                <mat-icon color="accent" matSuffix>send</mat-icon>
+              </button>
+            </mat-dialog-actions>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

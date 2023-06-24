@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {User} from "../../../../core/model/basic/User";
+import {User} from "../../../../../core/model/basic/User";
 import {MatDialog} from "@angular/material/dialog";
-import {PostService} from "../../../../service/post/post.service";
-import {TokenService} from "../../../../service/token/token.service";
+import {PostService} from "../../../../../service/post/post.service";
+import {TokenService} from "../../../../../service/token/token.service";
 import {CommentDialogComponent} from "../comment-dialog/comment-dialog.component";
 
 @Component({

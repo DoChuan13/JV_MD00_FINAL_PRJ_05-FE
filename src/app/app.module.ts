@@ -24,16 +24,21 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {MatInputModule} from "@angular/material/input";
 import {Error403Component} from './shared/component/common/error403/error403.component';
-import {PostDialogComponent} from './shared/component/element/post-dialog/post-dialog.component';
+import {PostDialogComponent} from './shared/component/element/post/post-dialog/post-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
-import { PostFormComponent } from './shared/component/element/post-form/post-form.component';
+import {PostFormComponent} from './shared/component/element/post/post-form/post-form.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
-import { UploadMultiComponent } from './feature/upload/upload-multi/upload-multi.component';
+import {UploadMultiComponent} from './feature/upload/upload-multi/upload-multi.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { CommentFormComponent } from './shared/component/element/comment-form/comment-form.component';
-import { CommentDialogComponent } from './shared/component/element/comment-dialog/comment-dialog.component';
+import {CommentFormComponent} from './shared/component/element/commen/comment-form/comment-form.component';
+import {CommentDialogComponent} from './shared/component/element/commen/comment-dialog/comment-dialog.component';
+import {EditPostDialogComponent} from "./shared/component/element/post/edit-post-dialog/edit-post-dialog.component";
+import {ConfirmDialogComponent} from "./shared/component/element/confirm-dialog/confirm-dialog.component";
+import {
+  EditCommentDialogComponent
+} from "./shared/component/element/commen/edit-comment-dialog/edit-comment-dialog.component";
 
 @NgModule({
   declarations: [
@@ -51,9 +56,12 @@ import { CommentDialogComponent } from './shared/component/element/comment-dialo
     Error403Component,
     PostDialogComponent,
     PostFormComponent,
+    EditPostDialogComponent,
+    EditCommentDialogComponent,
     UploadMultiComponent,
     CommentFormComponent,
-    CommentDialogComponent
+    CommentDialogComponent,
+    ConfirmDialogComponent
   ],
     imports: [
       BrowserModule,
