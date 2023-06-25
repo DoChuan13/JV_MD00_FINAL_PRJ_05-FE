@@ -73,7 +73,9 @@
           <!-- chat-box -->
           <div class="chatbox">
             <div class="modal-dialog-scrollable">
-              <div class="modal-content">
+              <div class="modal-content" *ngIf="chatId!=undefined">
+
+                <!--Chat Box Header-->
                 <div class="msg-head">
                   <div class="row">
                     <div class="col-8">
@@ -114,14 +116,16 @@
                   <div class="msg-body">
                     <!--Content Chat Detail-->
                     <ul>
-                      <li class="sender">
-                        <p> Hey, Are you there? </p>
-                        <span class="time">10:06 am</span>
-                      </li>
-                      <li class="repaly">
-                        <p> Last Minute Festive Packages From Superbreak</p>
-                        <span class="time">10:20 am</span>
-                      </li>
+                      <div *ngFor="let detail of chatDetail">
+                        <li class="sender" *ngIf="detail.user?.id!=user?.id">
+                          <p> {{detail.content}} </p>
+                          <span class="time">{{convertDate(detail.sentTime)}}</span>
+                        </li>
+                        <li class="repaly" *ngIf="detail.user?.id==user?.id">
+                          <p> {{detail.content}}</p>
+                          <span class="time">{{convertDate(detail.sentTime)}}</span>
+                        </li>
+                      </div>
                     </ul>
                   </div>
                 </div>
@@ -133,7 +137,6 @@
                       type="text" class="form-control" aria-label="message…" placeholder="Write message…" [value]="chatForm.value.content">
                     <button type="submit">Send Message</button>
                   </form>
-
                 </div>
               </div>
             </div>

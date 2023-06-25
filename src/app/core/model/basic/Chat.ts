@@ -6,6 +6,7 @@ export class Chat {
   public respUser?: User;
   public creatTime?: any;
   public latestTime?: any;
+  public chatDetails?: ChatDetail;
 
   constructor(sentUser: User, respUser: User, creatTime: any, latestTime: any) {
     this.sentUser = sentUser;

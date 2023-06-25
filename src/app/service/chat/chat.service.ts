@@ -30,6 +30,6 @@ export class ChatService {
   }
 
   public sendChatContent(chatDetailDTO: ChatDetailDTO): Observable<any> {
-    return this.service.postDatabase(Api.CHAT, chatDetailDTO);
+    return this.service.postDatabase(Api.CHAT+"/session", chatDetailDTO);
   }
 }
