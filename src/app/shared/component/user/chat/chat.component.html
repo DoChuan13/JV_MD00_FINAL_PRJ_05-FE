@@ -1,6 +1,6 @@
 <!-- char-area -->
 <section class="message-area" >
-  <div class="container" style="margin: 20px auto 0;">
+  <div class="container" style="margin: 70px auto 0;">
     <div class="row">
       <div class="col-12">
         <div class="chat-area">
@@ -39,7 +39,10 @@
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="Open" role="tabpanel" aria-labelledby="Open-tab">
                         <!-- chat-list -->
-                        <div class="chat-list">
+                        <div class="chat-list" onclick="function showBox() {
+                          document.querySelector('.chatbox').classList.add('showbox');
+                        }
+                        showBox()">
                           <a routerLink="/chat/session/{{chat.id}}" class="d-flex align-items-center"
                              *ngFor="let chat of chatList">
                             <div class="flex-shrink-0" *ngIf="checkTargetChat(chat)==1">
@@ -93,9 +96,13 @@
                   <div class="row">
                     <div class="col-8">
                       <div class="d-flex align-items-center">
-                        <span class="chat-icon"><img class="img-fluid"
-                                                     src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
-                                                     alt="image title"></span>
+                        <span class="chat-icon" onclick="function hiddenBox() {
+                            console.log('Action');
+                            document.querySelector('.chatbox').classList.remove('showbox');
+                        }
+                        hiddenBox()"><img class="img-fluid"
+                                          src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
+                                          alt="image title"></span>
                         <div class="flex-shrink-0">
                           <img class="img-fluid" src="{{targetAvatar}}"
                                alt="user img"
