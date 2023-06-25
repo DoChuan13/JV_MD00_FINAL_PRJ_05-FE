@@ -13,5 +13,6 @@ export class Const {
   public static CREATE_COMMENT = "Create Comment Success!!!";
   public static UPDATE_COMMENT = "Update Comment Success!!!";
   public static DELETE_COMMENT = "Delete Comment Success!!!";
+  public static DELETE_CHAT = "Delete Chat Success!!!";
 
 }

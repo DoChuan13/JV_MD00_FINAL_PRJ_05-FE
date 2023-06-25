@@ -26,7 +26,7 @@ export class ChatService {
   }
 
   public leaveCurrentChat(id: any): Observable<any> {
-    return this.service.putDatabase(Api.CHAT + "/leave/", id, {});
+    return this.service.putDatabase(Api.CHAT + "/leave", id, {});
   }
 
   public sendChatContent(chatDetailDTO: ChatDetailDTO): Observable<any> {

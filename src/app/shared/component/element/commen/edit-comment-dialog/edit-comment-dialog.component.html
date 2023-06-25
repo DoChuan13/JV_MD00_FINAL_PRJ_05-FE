@@ -1,4 +1,4 @@
-<h1 mat-dialog-title style="text-align: center">Create Comment Form</h1>
+<h1 mat-dialog-title style="text-align: center">Edit Comment Form</h1>
 <mat-dialog-content class="mat-typography" style="min-width: calc(100vw*0.8)">
   <div class="container">
     <div class="row">
@@ -18,7 +18,7 @@
                       style="width: 100%"
                       [mat-dialog-close]="false"
                       *ngIf="form.valid">
-                Create Comment
+                Update Comment
                 <mat-icon color="accent" matSuffix>send</mat-icon>
               </button>
               <button type="submit" mat-stroked-button color="accent"
@@ -26,7 +26,7 @@
                       style="width: 100%"
                       [mat-dialog-close]="false" disabled
                       *ngIf="!form.valid">
-                Create Comment
+                Update Comment
                 <mat-icon color="accent" matSuffix>send</mat-icon>
               </button>
             </mat-dialog-actions>

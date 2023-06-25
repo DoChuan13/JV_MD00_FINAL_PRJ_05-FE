@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Const} from "../../../../core/constant/Const";
 import {CommonService} from "../../../../service/common/common.service";
 import {PostService} from "../../../../service/post/post.service";
+import {ChatService} from "../../../../service/chat/chat.service";
 
 @Component({
   selector: 'app-comment-dialog',
@@ -25,6 +26,7 @@ export class ConfirmDialogComponent implements OnInit {
               private commentService: CommentService,
               private postService: PostService,
               private commonService: CommonService,
+              private chatService: ChatService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
@@ -35,7 +37,6 @@ export class ConfirmDialogComponent implements OnInit {
   confirmAction() {
     if (this.data.post) {
       this.postService.deleteCurrentPost(this.data.post.id).subscribe(data => {
-        console.log(data)
         this.reRenderParent.emit({refresh: true});
         this.commonService.detectChange = Const.DELETE_POST;
         /*window.location.reload()*/
@@ -43,9 +44,15 @@ export class ConfirmDialogComponent implements OnInit {
     }
     if (this.data.comment) {
       this.commentService.deleteCurrentComment(this.data.comment.id).subscribe(data => {
-        console.log(data)
         this.reRenderParent.emit({refresh: true});
         this.commonService.detectChange = Const.DELETE_POST;
+        /*window.location.reload()*/
+      })
+    }
+    if (this.data.chat) {
+      this.chatService.leaveCurrentChat(this.data.chat.id).subscribe(data => {
+        this.reRenderParent.emit({refresh: true});
+        this.commonService.detectChange = Const.DELETE_CHAT;
         /*window.location.reload()*/
       })
     }

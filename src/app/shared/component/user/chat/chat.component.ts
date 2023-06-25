@@ -1,14 +1,18 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, EventEmitter, OnInit, Output} from '@angular/core';
 import {WebSocketAPI} from "../../../../service/websocket/WebSocketAPI";
 import {chatJs} from "../../../../../assets/js/Javascrip";
 import {Chat, ChatDetail} from "../../../../core/model/basic/Chat";
 import {ChatService} from "../../../../service/chat/chat.service";
 import {UserService} from "../../../../service/user/user.service";
 import {User} from "../../../../core/model/basic/User";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
 import {ChatDetailDTO} from "../../../../core/model/ChatDetailDTO";
 import {CommonService} from "../../../../service/common/common.service";
+import {ConfirmDialogComponent} from "../../element/confirm-dialog/confirm-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Const} from "../../../../core/constant/Const";
+import {ChatDTO} from "../../../../core/model/ChatDTO";
 
 
 @Component({
@@ -17,9 +21,16 @@ import {CommonService} from "../../../../service/common/common.service";
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, DoCheck {
+  @Output() reRenderParent = new EventEmitter<any>();
   public chatList: Chat[] = [];
   public chatDetail: ChatDetail[] = [];
+  public userFindResult: User[] = [];
+  public chatAvailable = "blank";
   public user?: User;
+  public targetName?: string;
+  public targetAvatar?: string;
+  searchChat: any;
+  searchUser?: string;
   chatForm = this.formBuilder.group({
     content: ['', [Validators.required, Validators.minLength(1)]]
   })
@@ -34,8 +45,10 @@ export class ChatComponent implements OnInit, DoCheck {
     private commonService: CommonService,
     private chatService: ChatService,
     private userService: UserService,
-    private router: ActivatedRoute,
-    private formBuilder: FormBuilder) {
+    private activeRouter: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -45,8 +58,10 @@ export class ChatComponent implements OnInit, DoCheck {
         this.commonService,
         this.chatService,
         this.userService,
+        this.activeRouter,
+        this.formBuilder,
         this.router,
-        this.formBuilder
+        this.dialog
       ))
     ;
     this.connect();
@@ -86,7 +101,6 @@ export class ChatComponent implements OnInit, DoCheck {
     let chatId = JSON.parse(JSON.parse(message)).content;
     console.log("Detect new chat from ==> ", chatId)
     this.catchChatId = chatId;
-    const chatIdService = this.commonService.chatId;
     const userService = this.commonService.loginUser;
     this.chatService.getChatDetail(chatId).subscribe(data => {
       if (data.sentUser.id == userService?.id ||
@@ -94,26 +108,17 @@ export class ChatComponent implements OnInit, DoCheck {
         console.log("Can Refresh");
         this.catchChatDetail = true;
         this.commonService.catchChatDetail = true;
-        //     console.log("Before==>", this.chatDetail);
-        //     this.chatService.getChatList().subscribe(data => {
-        //       this.chatList = data;
-        //       console.log(this.chatList)
-        //       for (let i = 0; i < this.chatList.length; i++) {
-        //         console.log(this.chatList[i].id)
-        //         console.log(this.chatId)
-        //         if (this.chatList[i].id == this.chatId) {
-        //           // @ts-ignore
-        //           this.chatDetail = this.chatList[i].chatDetails;
-        //           break;
-        //         }
-        //       }
-        //     })
-        //     console.log("After==>", this.chatDetail);
       }
     })
   }
 
   ngDoCheck() {
+    const change = this.commonService.detectChange;
+    if (change == Const.DELETE_CHAT) {
+      console.log("Do check==> have changed")
+      this.commonService.detectChange = undefined;
+      this.router.navigate(['/chat']).then();
+    }
     if (this.commonService.catchChatDetail) {
       console.log("See more chat");
       this.catchChatDetail = false;
@@ -124,6 +129,7 @@ export class ChatComponent implements OnInit, DoCheck {
           if (this.chatList[i].id == this.chatId) {
             // @ts-ignore
             this.chatDetail = this.chatList[i].chatDetails;
+            this.showChatUserInfo();
             break;
           }
         }
@@ -131,11 +137,18 @@ export class ChatComponent implements OnInit, DoCheck {
     }
   }
 
-
-  private loadFirstContent() {
-    this.getChatList();
-    this.getLoginUser();
-    this.catchParams();
+  openConfirmCommentDialog(chatId: any) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,
+      {
+        data:
+          {chat: {id: chatId}}
+      });
+    dialogRef.componentInstance.reRenderParent.subscribe(data => {
+      this.reRenderParent.emit(data);
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   convertDate(date: any) {
@@ -150,10 +163,73 @@ export class ChatComponent implements OnInit, DoCheck {
     })
   }
 
+  showChatUserInfo() {
+    for (let i = 0; i < this.chatList.length; i++) {
+      if (this.chatId == this.chatList[i].id) {
+        this.chatAvailable = "available";
+        // @ts-ignore
+        if (this.chatList[i].sentUser.id == this.user?.id) {
+          // @ts-ignore
+          this.targetName = this.chatList[i].respUser.name;
+          // @ts-ignore
+          this.targetAvatar = this.chatList[i].respUser.avatar;
+        } else {
+          // @ts-ignore
+          this.targetName = this.chatList[i].sentUser.name;
+          // @ts-ignore
+          this.targetAvatar = this.chatList[i].sentUser.avatar;
+        }
+      }
+    }
+  }
+
+  searchChatResult() {
+    this.chatList = [];
+    const chats = this.commonService.chatList;
+    for (let i = 0; i < chats.length; i++) {
+      // @ts-ignore
+      if (chats[i].sentUser.name.toLowerCase().includes(this.searchChat?.toLowerCase())) {
+        this.chatList.push(chats[i])
+      }
+      // @ts-ignore
+      if (chats[i].respUser.name.toLowerCase().includes(this.searchChat?.toLowerCase())) {
+        this.chatList.push(chats[i])
+      }
+    }
+  }
+
+  createNewChat() {
+    this.router.navigate(['/chat/new']).then(result => {
+      this.chatAvailable = "new";
+    })
+  }
+
+  findUser() {
+    this.userService.findByUserAccByName(this.searchUser).subscribe(data => {
+      this.userFindResult = data;
+    })
+  }
+
+  startNewChat(startUser: User) {
+    let chatDTO = new ChatDTO(startUser);
+    console.log(startUser)
+    this.chatService.createNewChat(chatDTO).subscribe(data => {
+      console.log(data)
+      this.router.navigate(['/chat']).then();
+    })
+  }
+
+  private loadFirstContent() {
+    this.getChatList();
+    this.getLoginUser();
+    this.catchParams();
+  }
+
   private catchParams() {
-    this.router.paramMap.subscribe(data => {
+    this.activeRouter.paramMap.subscribe(data => {
       if (this.chatId != data.get('id')) {
         this.chatId = data.get('id');
+        this.showChatUserInfo()
         this.commonService.chatId = data.get('id');
         this.catchChatDetail = true;
         this.commonService.catchChatDetail = true;
@@ -165,9 +241,10 @@ export class ChatComponent implements OnInit, DoCheck {
   private getChatList() {
     this.chatService.getChatList().subscribe(data => {
       this.chatList = data;
+      this.commonService.chatList = data;
       this.catchChatDetail = true;
       this.commonService.catchChatDetail = true;
-      console.log("Get Chat List==>", this.chatList)
+      /*console.log("Get Chat List==>", this.chatList)*/
     })
   }
 }

@@ -14,7 +14,7 @@ export class PostService {
 
   public getPostPage(page: any): Observable<any> {
     console.log("Create New Post!!!");
-    return this.service.getDatabasePage(Api.POST + "/page", "", page);
+    return this.service.getDatabaseParams(Api.POST + "/page", "", page);
   }
 
   public createNewPost(post: PostDTO): Observable<any> {

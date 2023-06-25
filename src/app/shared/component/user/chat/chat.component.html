@@ -10,10 +10,18 @@
               <div class="modal-content">
                 <div class="chat-header">
                   <div class="msg-search">
-                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search"
-                           aria-label="search">
-                    <a class="add" href="#"><img class="img-fluid"
-                                                 src="https://mehedihtml.com/chatbox/assets/img/add.svg" alt="add"></a>
+                    <form style="width: 100%" (ngSubmit)="searchChatResult()">
+                      <input [(ngModel)]="searchChat"
+                             name="searchResult"
+                             style="display: inline-block;width: 95%;"
+                             type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search"
+                             aria-label="search">
+                    </form>
+                    <img class="img-fluid"
+                         src="https://mehedihtml.com/chatbox/assets/img/add.svg" alt="add"
+                         style="width: 32px;height: 32px;cursor: pointer"
+                         (click)="createNewChat()"
+                    >
                   </div>
 
                   <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -73,7 +81,12 @@
           <!-- chat-box -->
           <div class="chatbox">
             <div class="modal-dialog-scrollable">
-              <div class="modal-content" *ngIf="chatId!=undefined">
+              <div class="modal-content" *ngIf="chatAvailable=='blank'"
+                   style="display: flex;justify-content: center;align-items: center">
+                <h5 style="color: blue">Select a chat or start a new conversation</h5>
+              </div>
+
+              <div class="modal-content" *ngIf="chatAvailable=='available'">
 
                 <!--Chat Box Header-->
                 <div class="msg-head">
@@ -84,28 +97,20 @@
                                                      src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
                                                      alt="image title"></span>
                         <div class="flex-shrink-0">
-                          <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
-                               alt="user img">
+                          <img class="img-fluid" src="{{targetAvatar}}"
+                               alt="user img"
+                               style="width: 45px;height: 45px">
                         </div>
                         <div class="flex-grow-1 ms-3">
-                          <h3>Mehedi Hasan</h3>
-                          <p>front end developer</p>
+                          <h3>{{targetName}}</h3>
                         </div>
                       </div>
                     </div>
                     <div class="col-4">
                       <ul class="moreoption">
                         <li class="navbar nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                             aria-expanded="false">Delete</a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                              <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                          </ul>
+                          <button class="btn btn-danger" (click)="openConfirmCommentDialog(chatId)">Leave Chat
+                          </button>
                         </li>
                       </ul>
                     </div>
@@ -134,8 +139,75 @@
                   <form #f="ngForm" (ngSubmit)="f.form.valid&& sendMessage()" [formGroup]="chatForm">
                     <input
                       formControlName="content"
-                      type="text" class="form-control" aria-label="message…" placeholder="Write message…" [value]="chatForm.value.content">
-                    <button type="submit">Send Message</button>
+                      type="text" class="form-control" aria-label="message…" placeholder="Write message…"
+                      [value]="chatForm.value.content">
+                    <button type="submit">Send</button>
+                  </form>
+                </div>
+              </div>
+
+              <div class="modal-content" *ngIf="chatAvailable=='new'">
+
+                <!--Chat Box Header-->
+                <div class="msg-head">
+                  <div class="row">
+                    <div class="col-10">
+                      <div class="d-flex align-items-center">
+                      </div>
+                      <form style="width: 100%" (ngSubmit)="findUser()">
+                        <input [(ngModel)]="searchUser"
+                               name="searchResult"
+                               style="display: inline-block;width: 95%;"
+                               type="text" class="form-control" placeholder="Search"
+                               aria-label="search">
+                      </form>
+                    </div>
+                    <div class="col-2">
+                      <ul class="moreoption">
+                        <li class="navbar nav-item dropdown">
+                          <button class="btn btn-primary" (click)="findUser()">Search
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-body">
+                  <div class="msg-body">
+                    <div style="padding: 20px">
+                      <div class="row d-flex align-items-center justify-content-between"
+                           *ngIf="userFindResult.length==0">
+                        <h5 style="color: blue; text-align: center">Find not found</h5>
+                      </div>
+                      <div class="row d-flex align-items-center justify-content-between"
+                           *ngFor="let result of userFindResult">
+                        <div class="row col-8 d-flex align-items-center">
+                          <img class="col-4"
+                               src="{{result.avatar}}"
+                               alt="user img"
+                               style="height: 45px;width: 45px;"
+                          >
+                          <h5
+                            class="col-4"
+                            style="display: inline-block">{{result.name}}</h5>
+                        </div>
+                        <div class="col-4"
+                             style="text-align: right">
+                          <button class="btn btn-primary" (click)="startNewChat(result)">Start Chat</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="send-box">
+                  <form #f="ngForm" (ngSubmit)="f.form.valid&& sendMessage()" [formGroup]="chatForm">
+                    <input
+                      formControlName="content"
+                      type="text" class="form-control" aria-label="message…" placeholder="Write message…"
+                      [value]="chatForm.value.content">
+                    <button type="submit">Send</button>
                   </form>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {User} from "../../core/model/basic/User";
+import {Chat} from "../../core/model/basic/Chat";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class CommonService {
   loginUser?: User;
   chatId?: any;
   catchChatDetail = false;
+  chatList: Chat[] = [];
 
   constructor() {
   }

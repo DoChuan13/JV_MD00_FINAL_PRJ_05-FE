@@ -12,8 +12,8 @@ export class HttpService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getDatabasePage(resource: string, locate: string = "", page: any): Observable<any> {
-    const params = page;
+  public getDatabaseParams(resource: string, locate: string = "", paramConfig: any): Observable<any> {
+    const params = paramConfig;
     let url = this.REST_API + resource + "/" + locate;
     return this.httpClient.get<any>(url, {params});
   }

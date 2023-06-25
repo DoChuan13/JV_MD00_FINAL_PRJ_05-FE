@@ -20,6 +20,7 @@ const routes: Routes = [
       {path: "user", component: UserComponent},
       {path: "chat", component: ChatComponent},
       {path: "chat/session/:id", component: ChatComponent},
+      {path: "chat/new", component: ChatComponent},
     ]
   },
   {path: "admin", component: AdminComponent, canActivate: [adminAuthGuard]},
