@@ -31,7 +31,11 @@ export class LoginComponent {
     this.authService.loginUser(signIn).subscribe(data => {
       if (data.status == 202) {
         this.status = "Login failed. Please try again!!!"
-      } else {
+      }
+      else if (data.message=='Account has been blocked. You cannot access any resources!!!'){
+        this.status = "Account has been blocked!!!"
+      }
+      else {
         this.tokenService.setToken(data.token)
         this.tokenService.setName(data.name)
         this.tokenService.setAvatar(data.avatar)
