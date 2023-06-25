@@ -7,12 +7,12 @@ import {UserService} from "../../../../service/user/user.service";
 import {User} from "../../../../core/model/basic/User";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
-import {ChatDetailDTO} from "../../../../core/model/ChatDetailDTO";
+import {ChatDetailDTO} from "../../../../core/model/Dto/ChatDetailDTO";
 import {CommonService} from "../../../../service/common/common.service";
 import {ConfirmDialogComponent} from "../../element/confirm-dialog/confirm-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Const} from "../../../../core/constant/Const";
-import {ChatDTO} from "../../../../core/model/ChatDTO";
+import {ChatDTO} from "../../../../core/model/Dto/ChatDTO";
 
 
 @Component({

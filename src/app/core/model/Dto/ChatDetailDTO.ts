@@ -1,4 +1,4 @@
-import {Chat} from "./basic/Chat";
+import {Chat} from "../basic/Chat";
 
 export class ChatDetailDTO {
   public chat?: Chat;

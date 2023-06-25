@@ -39,6 +39,7 @@ import {ConfirmDialogComponent} from "./shared/component/element/confirm-dialog/
 import {
   EditCommentDialogComponent
 } from "./shared/component/element/commen/edit-comment-dialog/edit-comment-dialog.component";
+import { FriendComponent } from './shared/component/user/friend/friend.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {
     UploadMultiComponent,
     CommentFormComponent,
     CommentDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    FriendComponent
   ],
     imports: [
       BrowserModule,

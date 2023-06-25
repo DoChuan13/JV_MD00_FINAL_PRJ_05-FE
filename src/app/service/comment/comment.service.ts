@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "../http/http.service";
 import {Observable} from "rxjs";
 import {Api} from "../../core/constant/Api";
-import {CommentDTO} from "../../core/model/CommentDTO";
+import {CommentDTO} from "../../core/model/Dto/CommentDTO";
 
 @Injectable({
   providedIn: 'root'

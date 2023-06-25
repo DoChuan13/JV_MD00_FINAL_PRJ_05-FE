@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "../http/http.service";
 import {Observable} from "rxjs";
 import {Api} from "../../core/constant/Api";
-import {ChatDTO} from "../../core/model/ChatDTO";
-import {ChatDetailDTO} from "../../core/model/ChatDetailDTO";
+import {ChatDTO} from "../../core/model/Dto/ChatDTO";
+import {ChatDetailDTO} from "../../core/model/Dto/ChatDetailDTO";
 
 @Injectable({
   providedIn: 'root'

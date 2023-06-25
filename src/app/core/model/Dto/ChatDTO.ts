@@ -1,4 +1,4 @@
-import {User} from "./basic/User";
+import {User} from "../basic/User";
 
 export class ChatDTO {
   public id?: number;

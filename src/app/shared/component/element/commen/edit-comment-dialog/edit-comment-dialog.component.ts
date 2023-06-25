@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {CommentDTO} from "../../../../../core/model/CommentDTO";
+import {CommentDTO} from "../../../../../core/model/Dto/CommentDTO";
 import {CommentService} from "../../../../../service/comment/comment.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Const} from "../../../../../core/constant/Const";

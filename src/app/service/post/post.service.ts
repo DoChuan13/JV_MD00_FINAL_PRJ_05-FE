@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "../http/http.service";
 import {Observable} from "rxjs";
 import {Api} from "../../core/constant/Api";
-import {PostDTO} from "../../core/model/PostDTO";
+import {PostDTO} from "../../core/model/Dto/PostDTO";
 
 @Injectable({
   providedIn: 'root'

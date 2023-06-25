@@ -12,6 +12,7 @@ import {RegisterComponent} from "./shared/component/common/register/register.com
 import {adminAuthGuard} from "./guard/admin-auth.guard";
 import {Error403Component} from "./shared/component/common/error403/error403.component";
 import {authGuard} from "./guard/auth.guard";
+import {FriendComponent} from "./shared/component/user/friend/friend.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {path: "", component: HomeComponent},
       {path: "user", component: UserComponent},
       {path: "chat", component: ChatComponent},
+      {path: "friend", component: FriendComponent},
+      {path: "friend/request", component: FriendComponent},
+      {path: "friend/sent-request", component: FriendComponent},
+      {path: "friend/search", component: FriendComponent},
       {path: "chat/session/:id", component: ChatComponent},
       {path: "chat/new", component: ChatComponent},
     ]

@@ -11,6 +11,7 @@ export class CommonService {
   chatId?: any;
   catchChatDetail = false;
   chatList: Chat[] = [];
+  findUserResult: User[] = [];
 
   constructor() {
   }

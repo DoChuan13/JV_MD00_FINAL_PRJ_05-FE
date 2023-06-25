@@ -1,0 +1,210 @@
+<div class="md:hidden w-full pt-14">
+  <div class="w-full flex justify-between items-center fixed bg-white dark:bg-dark-second z-40">
+    <span class="font-medium text-2xl dark:text-dark-txt px-4">Friends</span>
+    <div class="flex items-center justify-between p-2 space-x-2 px-3">
+      <div
+        class="text-2xl grid place-items-center bg-gray-200 dark:bg-dark-third rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt dark:hover:bg-dark-fourth">
+        <i class="bx bx-search-alt-2"></i>
+      </div>
+      <div
+        class="text-2xl grid place-items-center bg-gray-200 dark:bg-dark-third rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt dark:hover:bg-dark-fourth"
+        id="dark-mode-toggle-mb">
+        <i class="bx bx-moon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MAIN -->
+<div class="flex lg:justify-center h-screen relative">
+  <!-- SIDE NAV -->
+  <div
+    class="w-3/12 pt-16 h-full hidden md:flex flex-col fixed top-0 left-0 shadow bg-white dark:bg-dark-second border-r dark:border-dark-third"
+  >
+    <ul class="p-4 pt-0">
+      <li
+        class="flex justify-between items-center bg-gray-200 rounded-lg transition-all xl:text-lg text-sm dark:text-dark-txt dark:bg-dark-fourth cursor-pointer"
+      >
+        <a routerLink="/" class="flex items-center space-x-2 p-2">
+              <span
+                class="w-10 h-10 rounded-full grid place-items-center bg-blue-500"
+              >
+                <i class="bx bxs-group text-white text-2xl p-icon"></i>
+              </span>
+
+          <span class="font-semibold">Home</span></a
+        >
+      </li>
+
+      <li
+        class="flex justify-between items-center hover:bg-gray-200 rounded-lg transition-all xl:text-lg text-sm dark:text-dark-txt dark:hover:bg-dark-fourth cursor-pointer"
+      >
+        <a routerLink="/friend/request" class="flex items-center space-x-2 p-2">
+              <span
+                class="w-10 h-10 rounded-full grid place-items-center bg-gray-300 dark:bg-dark-third"
+              >
+                <i class="bx bxs-user-minus text-2xl p-icon"></i>
+              </span>
+
+          <span class="font-semibold">Friend Requests</span></a
+        >
+
+        <span class="text-gray-500 text-3xl px-2 pt-1">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+      </li>
+
+      <li
+        class="flex justify-between items-center hover:bg-gray-200 rounded-lg transition-all xl:text-lg text-sm dark:text-dark-txt dark:hover:bg-dark-fourth cursor-pointer"
+      >
+        <a routerLink="/friend/sent-request" class="flex items-center space-x-2 p-2">
+              <span
+                class="w-10 h-10 rounded-full grid place-items-center bg-gray-300 dark:bg-dark-third"
+              >
+                <i class="bx bxs-user-plus text-2xl p-icon"></i>
+              </span>
+
+          <span class="font-semibold">Sent Request</span></a
+        >
+
+        <span class="text-gray-500 text-3xl px-2 pt-1">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+      </li>
+
+      <li
+        class="flex justify-between items-center hover:bg-gray-200 rounded-lg transition-all xl:text-lg text-sm dark:text-dark-txt dark:hover:bg-dark-fourth cursor-pointer"
+      >
+        <a routerLink="/friend" class="flex items-center space-x-2 p-2">
+              <span
+                class="w-10 h-10 rounded-full grid place-items-center bg-gray-300 dark:bg-dark-third"
+              >
+                <i class="bx bxs-user-detail text-2xl p-icon"></i>
+              </span>
+
+          <span class="font-semibold">All friends</span></a
+        >
+
+        <span class="text-gray-500 text-3xl px-2 pt-1">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- FRIEND CONTENT -->
+
+  <!-- TABLET to DESKTOP view -->
+  <div
+    class="w-full hidden md:block md:w-3/4 pt-16 px-7 h-full absolute top-0 right-0"
+  >
+    <div class="flex justify-between items-center pt-4 group">
+      <form #f="ngForm" (ngSubmit)="findFriend()" style="width: 84%;">
+        <input [(ngModel)]="findUser" name="findUser"
+               type="text" class="form-control" aria-label="message…" placeholder="Find User…"
+               style="width: 100%">
+      </form>
+      <button type="button" class="btn btn-primary" (click)="findFriend()" style="width: 15%">Find</button>
+    </div>
+    <!-- Friend Requests -->
+    <div class="flex justify-between items-center pt-4 group">
+          <span class="font-semibold text-2xl text-sm dark:text-dark-txt"
+          >Friend List</span
+          >
+      <span
+        class="text-blue-500 cursor-pointer xl:text-lg text-sm hover:bg-gray-200 dark:hover:bg-dark-fourth p-2 rounded-md"
+      >See All</span
+      >
+    </div>
+
+    <!-- ROW 1 (5 element/row)-->
+    <div class="relative flex space-x-2 pt-4 d-flex flex-wrap justify-between">
+      <div
+        class="w-2/4 h-96 rounded-xl shadow overflow-hidden flex flex-col cursor-pointer col-3"
+        *ngFor="let user of renderList"
+      >
+        <div class="h-3/5 overflow-hidden">
+          <img src="{{user.avatar}}" alt="Profile picture"/>
+        </div>
+        <div
+          class="flex-col flex p-4 bg-white dark:bg-dark-second dark:text-dark-txt"
+        >
+              <span class="font-semibold mb-2 text-xl hover:underline"
+              >{{user.name}}</span
+              >
+          <div
+            class="w-full bg-blue-500 cursor-pointer py-1 text-center text-lg font-semibold text-white rounded-lg mb-2"
+            (click)="confirmActionFriend(checkStatusFriend(user),user)"
+          >
+            {{checkStatusFriend(user)}}
+          </div>
+          <div
+            class="w-full cursor-pointer py-1 text-center text-lg font-semibold text-black bg-gray-200 hover:bg-gray-300 dark:text-dark-txt dark:bg-dark-third dark:hover:bg-dark-fourth rounded-lg"
+            *ngIf="checkStatusFriend(user)=='Confirm Request'"
+            (click)="rejectActionFriend(checkStatusFriend(user),user)"
+          >
+            Delete
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE view -->
+  <!--<div class="md:hidden w-full h-full pt-16 bg-white dark:bg-dark-second">-->
+
+  <!--<div class="flex pt-11 space-x-2 px-4">
+    <span
+      class="py-2 px-3 font-medium bg-gray-200 dark:bg-dark-third rounded-full hover:bg-gray-300 dark:text-dark-txt dark:hover:bg-dark-fourth cursor-pointer">Suggestions</span>
+    <span
+      class="py-2 px-3 font-medium bg-gray-200 dark:bg-dark-third rounded-full hover:bg-gray-300 dark:text-dark-txt dark:hover:bg-dark-fourth cursor-pointer">Your Friends</span>
+  </div>-->
+
+  <!-- Friend Lists -->
+  <!--<div class="flex justify-between items-center py-2 text-xl px-4">
+    <div class="font-semibold dark:text-dark-txt"
+    > Friend requests
+      <span class="text-red-500">17</span>
+    </div>
+    <span
+      class="text-blue-500 cursor-pointer text-lg hover:bg-gray-200 dark:hover:bg-dark-third rounded-md p-1"
+    >See all</span
+    >
+  </div>-->
+
+  <!-- People you may know -->
+  <!--<div class="bg-white dark:bg-dark-second px-4">
+
+    <div class="" *ngFor="let i of renderList">
+      <a href="#"
+         class="flex items-center space-x-4 p-2 hover:bg-gray-100 dark:hover:bg-dark-third rounded-lg transition-all">
+        <img src="./assets/images/fp7.png" alt="Profile picture" class="w-20 h-20 rounded-full">
+        <div class="flex-1 h-full">
+          <div class="dark:text-dark-txt text-lg">
+            <span class="font-medium">Navier</span>
+          </div>
+          <div class="flex items-center">
+            <span class="rounded-full grid place-items-center -ml-1 w-5 h-5 cursor-pointer">
+              <img src="./assets/images/sp1.png" alt="Friend" class="rounded-full"/>
+            </span>
+            <span class="rounded-full grid place-items-center -ml-1 w-5 h-5 cursor-pointer">
+              <img src="./assets/images/sp2.png" alt="Friend" class="rounded-full"/>
+            </span>
+            <span class="ml-2 text-gray-500 dark:text-dark-txt mb-2">13 mutual friends</span>
+          </div>
+          <div class="flex space-x-2 pt-1">
+            <div class="w-1/2 bg-blue-500 cursor-pointer py-1 text-center font-semibold text-white rounded-lg">
+              Add Friend
+            </div>
+            <div
+              class="w-1/2 bg-gray-200 hover:bg-gray-300 cursor-pointer py-1 text-center font-semibold text-black dark:text-dark-txt dark:bg-dark-fourth rounded-lg">
+              Remove
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>-->
+  <!--</div>-->
+</div>

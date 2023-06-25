@@ -3,8 +3,8 @@ import {Router} from "@angular/router";
 import {HttpService} from "../http/http.service";
 import {Observable} from "rxjs";
 import {Api} from "../../core/constant/Api";
-import {SignUpDTO} from "../../core/model/SignUpDTO";
-import {SignInDTO} from "../../core/model/SignInDTO";
+import {SignUpDTO} from "../../core/model/Dto/SignUpDTO";
+import {SignInDTO} from "../../core/model/Dto/SignInDTO";
 
 @Injectable({
   providedIn: 'root'

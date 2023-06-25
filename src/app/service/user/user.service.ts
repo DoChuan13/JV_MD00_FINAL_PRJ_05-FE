@@ -15,7 +15,6 @@ export class UserService {
   }
 
   public findByUserAccByName(name: any): Observable<any> {
-    console.log(Api.USER + `/find?name=${name}`)
     return this.service.getDatabaseParams(Api.USER + "/find", "", {name: name});
   }
 }

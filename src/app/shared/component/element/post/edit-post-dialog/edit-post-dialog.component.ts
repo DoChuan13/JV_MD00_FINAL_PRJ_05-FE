@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {PostDTO} from "../../../../../core/model/PostDTO";
+import {PostDTO} from "../../../../../core/model/Dto/PostDTO";
 import {PostService} from "../../../../../service/post/post.service";
 import {Image} from "../../../../../core/model/basic/Image";
 import {CommonService} from "../../../../../service/common/common.service";

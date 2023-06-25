@@ -6,4 +6,5 @@ export class Api {
   public static LIKE = "like";
   public static COMMENT = "comment";
   public static USER = "user";
+  public static FRIEND = "friend";
 }

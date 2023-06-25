@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../../../service/auth/auth.service";
-import {SignInDTO} from "../../../../core/model/SignInDTO";
+import {SignInDTO} from "../../../../core/model/Dto/SignInDTO";
 import {TokenService} from "../../../../service/token/token.service";
 import {Const} from "../../../../core/constant/Const";
 import {Router} from "@angular/router";
