@@ -1,9 +1,10 @@
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {ChatComponent} from "../../shared/component/user/chat/chat.component";
+import {environment} from "../../../environments/environment";
 
 export class WebSocketAPI {
-  webSocketEndPoint: string = 'http://localhost:8080/ws';
+  webSocketEndPoint: string = environment.API+'ws';
   topic: string = "/topic/chat";
   stompClient: any;
   chatComponent: ChatComponent;
@@ -52,6 +53,5 @@ export class WebSocketAPI {
   onMessageReceived(message: any) {
     console.log("Message Received from Server :: " + message);
     this.chatComponent.handleMessage(JSON.stringify(message.body));
-    console.log("Response =>>", message)
   }
 }

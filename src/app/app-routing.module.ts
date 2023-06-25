@@ -19,6 +19,7 @@ const routes: Routes = [
       {path: "", component: HomeComponent},
       {path: "user", component: UserComponent},
       {path: "chat", component: ChatComponent},
+      {path: "chat/session/:id", component: ChatComponent},
     ]
   },
   {path: "admin", component: AdminComponent, canActivate: [adminAuthGuard]},

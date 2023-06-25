@@ -39,21 +39,6 @@ export class HomeComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.firstLoadInfo();
-    /*window.addEventListener('scroll', (e) => {
-      const scroll = window.innerHeight + window.scrollY;
-      const windows = document.body.scrollHeight;
-      let scale = scroll / windows;
-
-      if (scale >= 0.700 && scale <= 0.71) {
-        console.log("Loading point");
-        this.page.size += 3;
-        this.postService.getPostPage(this.page).subscribe(data => {
-          this.postList = data['content'];
-          console.log(this.postList)
-        })
-      }
-      return false;
-    })*/
   }
 
   loadModePost() {

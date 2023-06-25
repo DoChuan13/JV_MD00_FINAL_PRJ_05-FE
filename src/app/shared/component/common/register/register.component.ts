@@ -35,7 +35,6 @@ export class RegisterComponent {
   }
 
   registerUser() {
-    console.log(this.form)
     let signUpDTO = new SignUpDTO(
       this.form.value.name,
       this.form.value.userName,

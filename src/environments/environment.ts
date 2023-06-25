@@ -1,4 +1,5 @@
 export const environment = {
+  API:'http://localhost:8080/',
   API_LOCAL: 'http://localhost:8080/',
   API_SERVER: 'https://laptrinhjv.herokuapp.com/',
   firebaseConfig: {
