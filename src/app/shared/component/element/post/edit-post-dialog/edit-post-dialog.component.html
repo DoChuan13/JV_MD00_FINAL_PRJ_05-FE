@@ -25,7 +25,7 @@
 
             <app-upload-multi (giveURLtoCreate)="onUpload($event)"/>
             <div class="row" *ngIf="defaultImage">
-              <div *ngFor="let image of imagesList"
+              <div *ngFor="let image of currentRenderImage"
                    style="margin-bottom: 10px; margin-top: 10px;display: inline-block;width: 150px">
                 <img [src]="image.urlImage" style="width: 150px; height: auto;" alt="avatar">
               </div>

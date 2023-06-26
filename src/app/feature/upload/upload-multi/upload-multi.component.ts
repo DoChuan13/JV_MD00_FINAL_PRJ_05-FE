@@ -55,8 +55,9 @@ const hideUploadInput = () => {
   let inputBtn = document.getElementById("upload-btn");
   let inputElement = document.getElementById("upload-multi");
   // @ts-ignore
-  inputBtn.addEventListener('click',()=>{
+  inputBtn.addEventListener('click',(e)=>{
     // @ts-ignore
     inputElement.click();
+    e.preventDefault()
   })
 }

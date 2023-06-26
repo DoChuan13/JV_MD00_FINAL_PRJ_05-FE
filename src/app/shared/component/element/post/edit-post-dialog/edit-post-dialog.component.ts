@@ -19,6 +19,7 @@ export class EditPostDialogComponent implements OnInit {
     content: ['', [Validators.required]]
   })
   public imagesList: any[] = [];
+  public currentRenderImage: any[] = [];
   defaultImage = true;
   protected readonly status = [
     {status: 'PUBLIC', viewValue: 'Public'},
@@ -39,6 +40,9 @@ export class EditPostDialogComponent implements OnInit {
       this.form.value.status,
       this.imagesList
     );
+    console.log("New Post",
+      this.postDTO
+    )
     this.postService.updateCurrentPost(this.postDTO, this.data.value.id).subscribe(data => {
       console.log(data)
       this.reRenderParent.emit({refresh: true});
@@ -60,6 +64,6 @@ export class EditPostDialogComponent implements OnInit {
       status: this.data.value.status,
       content: this.data.value.content
     });
-    this.imagesList = this.data.value.images;
+    this.currentRenderImage = this.data.value.images;
   }
 }
