@@ -12,6 +12,9 @@ import {EditPostDialogComponent} from "../../element/post/edit-post-dialog/edit-
 import {ConfirmDialogComponent} from "../../element/confirm-dialog/confirm-dialog.component";
 import {EditCommentDialogComponent} from "../../element/commen/edit-comment-dialog/edit-comment-dialog.component";
 import {Comment} from "../../../../core/model/basic/Comment";
+import {Friend} from "../../../../core/model/basic/Friend";
+import {Chat} from "../../../../core/model/basic/Chat";
+import {ChatService} from "../../../../service/chat/chat.service";
 
 @Component({
   selector: 'app-home',
@@ -24,6 +27,7 @@ export class HomeComponent implements OnInit, DoCheck {
   page = {page: 0, size: 3}
   public loginAvatar: any = "";
   public userName: any = "";
+  public chatList: Friend[] = [];
   public user?: User;
   public loadAble = true;
   public totalElements = 0;
@@ -34,6 +38,7 @@ export class HomeComponent implements OnInit, DoCheck {
               private likeService: LikeService,
               private userService: UserService,
               private commonService: CommonService,
+              private chatService: ChatService,
               private dialog: MatDialog) {
   }
 
@@ -87,19 +92,11 @@ export class HomeComponent implements OnInit, DoCheck {
     })
   }
 
-  private firstLoadInfo() {
-    this.loginAvatar = this.tokenService.getAvatar();
-    this.userName = this.tokenService.getName();
-    this.postService.getPostPage(this.page).subscribe(data => {
-      this.postList = data['content'];
-      this.totalElements += 3;
-      if (this.totalElements >= data['totalElements']) {
-        this.loadAble = false;
-      }
-    })
-    this.userService.getUserInfo().subscribe(data => {
-      this.user = data;
-    });
+  checkTargetChat(chat: Chat) {
+    if (chat.sentUser?.id == this.user?.id) {
+      return 1;
+    }
+    return 2;
   }
 
   ngDoCheck(): void {
@@ -176,5 +173,22 @@ export class HomeComponent implements OnInit, DoCheck {
     return this.user?.id == comment.user.id;
   }
 
+  private firstLoadInfo() {
+    this.loginAvatar = this.tokenService.getAvatar();
+    this.userName = this.tokenService.getName();
+    this.postService.getPostPage(this.page).subscribe(data => {
+      this.postList = data['content'];
+      this.totalElements += 3;
+      if (this.totalElements >= data['totalElements']) {
+        this.loadAble = false;
+      }
+    })
+    this.userService.getUserInfo().subscribe(data => {
+      this.user = data;
+    });
+    this.chatService.getChatList().subscribe(data => {
+      this.chatList = data;
+    })
+  }
 }
 
