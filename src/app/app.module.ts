@@ -40,6 +40,10 @@ import {
   EditCommentDialogComponent
 } from "./shared/component/element/commen/edit-comment-dialog/edit-comment-dialog.component";
 import { FriendComponent } from './shared/component/user/friend/friend.component';
+import { AdminNavbarComponent } from './shared/component/admin/admin-navbar/admin-navbar.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -63,26 +67,30 @@ import { FriendComponent } from './shared/component/user/friend/friend.component
     CommentFormComponent,
     CommentDialogComponent,
     ConfirmDialogComponent,
-    FriendComponent
+    FriendComponent,
+    AdminNavbarComponent
   ],
-    imports: [
-      BrowserModule,
-      AppRoutingModule,
-      FormsModule,
-      NgOptimizedImage,
-      ReactiveFormsModule,
-      BrowserAnimationsModule,
-      MatCardModule,
-      AngularFireStorageModule,
-      HttpClientModule,
-      MatInputModule,
-      MatDialogModule,
-      MatButtonModule,
-      MatSelectModule,
-      MatIconModule,
-      MatProgressSpinnerModule,
-      AngularFireModule.initializeApp(environment.firebaseConfig),
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    AngularFireStorageModule,
+    HttpClientModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatTableModule,
+  ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

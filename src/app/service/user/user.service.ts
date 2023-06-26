@@ -17,4 +17,20 @@ export class UserService {
   public findByUserAccByName(name: any): Observable<any> {
     return this.service.getDatabaseParams(Api.USER + "/find", "", {name: name});
   }
+
+  public getAllUserList(): Observable<any> {
+    return this.service.getDatabase(Api.USER + "/list");
+  }
+
+  public changeRoleAcc(id: any, newRole: any): Observable<any> {
+    return this.service.putDatabase(Api.USER + "/edit/role", id, newRole);
+  }
+
+  public blockUserAcc(id: any): Observable<any> {
+    return this.service.putDatabase(Api.USER + "/edit/block", id, {});
+  }
+
+  public deleteUserAcc(id: any): Observable<any> {
+    return this.service.deleteDatabase(Api.USER + "/delete", id);
+  }
 }

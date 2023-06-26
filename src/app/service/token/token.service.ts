@@ -43,6 +43,7 @@ export class TokenService {
     }
     let result = localStorage.getItem(Const.ROLES_KEY);
     if (result != null) {
+      this.roles = [];
       JSON.parse(result).forEach((role: any) => {
         this.roles?.push(role.authority);
       })
