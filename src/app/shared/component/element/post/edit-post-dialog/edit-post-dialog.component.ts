@@ -35,6 +35,9 @@ export class EditPostDialogComponent implements OnInit {
   }
 
   editCurrentPost() {
+    if (this.imagesList.length == 0) {
+      this.imagesList = this.currentRenderImage;
+    }
     this.postDTO = new PostDTO(
       this.form.value.content,
       this.form.value.status,

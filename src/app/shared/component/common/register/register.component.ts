@@ -42,8 +42,16 @@ export class RegisterComponent {
       this.form.value.password,
     )
     this.authToken.registerUser(signUpDTO).subscribe(data => {
+      console.log(data)
       if (data.status == 202) {
-        this.status = "Register failed";
+        this.status = "Register failed!";
+      }
+      if (data.message == "Fail. UserName existed!") {
+        this.status = "UserName existed";
+      } else if (data.message == "Fail. Email existed!") {
+        this.status = "Email existed";
+      } else if (data.message == "Fail. UserName existed!") {
+        this.status = "UserName existed!"
       } else {
         this.status = "Register success";
         this.router.navigate(['/login']).then();

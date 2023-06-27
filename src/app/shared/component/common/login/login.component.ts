@@ -29,13 +29,14 @@ export class LoginComponent {
       this.form.value.userName,
       this.form.value.password);
     this.authService.loginUser(signIn).subscribe(data => {
+      console.log(data)
       if (data.status == 202) {
         this.status = "Login failed. Please try again!!!"
-      }
-      else if (data.message=='Account has been blocked. You cannot access any resources!!!'){
+      } else if (data.message == "Account not Exist!!!") {
+        this.status = data.message;
+      } else if (data.message == 'Account has been blocked. You cannot access any resources!!!') {
         this.status = "Account has been blocked!!!"
-      }
-      else {
+      } else {
         this.tokenService.setToken(data.token)
         this.tokenService.setName(data.name)
         this.tokenService.setAvatar(data.avatar)
