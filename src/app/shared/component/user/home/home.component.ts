@@ -178,6 +178,7 @@ export class HomeComponent implements OnInit, DoCheck {
     this.loginAvatar = this.tokenService.getAvatar();
     this.userName = this.tokenService.getName();
     this.postService.getPostPage(this.page).subscribe(data => {
+      console.log(data)
       this.postList = data['content'];
       this.totalElements += 3;
       if (this.totalElements >= data['totalElements']) {
