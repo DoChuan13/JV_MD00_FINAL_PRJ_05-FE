@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit, DoCheck {
   loadModePost() {
     this.page.size += 3;
     this.postService.getPostPage(this.page).subscribe(data => {
+      console.log(data)
       this.postList = data['content'];
       this.totalElements += 3;
       if (this.totalElements >= data['totalElements']) {
