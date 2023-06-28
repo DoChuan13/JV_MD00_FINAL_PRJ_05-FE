@@ -1,0 +1,11 @@
+{
+  "/ws/*": {
+    "target": "https://laptrinhjv-762165465e2b.herokuapp.com/ws",
+    "secure": false,
+    "pathRewrite": {
+      "^/ws": false
+    },
+    "changeOrigin": false,
+    "logLevel": "debug"
+  }
+}
