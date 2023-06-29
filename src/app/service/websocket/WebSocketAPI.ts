@@ -15,7 +15,7 @@ export class WebSocketAPI {
   }
 
   _connect() {
-    const headers = new HttpHeaders()
+    /*const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Access-Control-Allow-Headers', 'Content-Type')
       .append('Access-Control-Allow-Methods', 'GET',)
@@ -24,11 +24,11 @@ export class WebSocketAPI {
       .append('Access-Control-Allow-Methods', 'PATCH',)
       .append('Access-Control-Allow-Methods', 'DELETE',)
       .append('Access-Control-Allow-Origin', '*');
-    console.log("Initialize WebSocket Connection");
+    console.log("Initialize WebSocket Connection");*/
     let ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
     const _this = this;
-    _this.stompClient.connect(headers, function () {
+    _this.stompClient.connect({}, function () {
       _this.stompClient.subscribe(_this.topic, function (sdkEvent: any) {
         _this.onMessageReceived(sdkEvent);
       });

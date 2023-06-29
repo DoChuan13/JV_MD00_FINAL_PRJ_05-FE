@@ -86,7 +86,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Fakebook:build:production"
+              "browserTarget": "Fakebook:build:production",
+              "proxyConfig": "projects/todo/src/proxy.conf.json"
             },
             "development": {
               "browserTarget": "Fakebook:build:development"

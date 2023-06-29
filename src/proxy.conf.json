@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://laptrinhjv-762165465e2b.herokuapp.com/",
+    "secure": false
+  }
+}
