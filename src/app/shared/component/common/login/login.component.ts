@@ -29,7 +29,7 @@ export class LoginComponent {
       this.form.value.userName,
       this.form.value.password);
     this.authService.loginUser(signIn).subscribe(data => {
-      console.log(data)
+      /*console.log(data)*/
       if (data.status == 202) {
         this.status = "Login failed. Please try again!!!"
       } else if (data.message == "Account not Exist!!!") {

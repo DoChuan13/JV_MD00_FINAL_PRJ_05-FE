@@ -199,9 +199,9 @@ export class ChatComponent implements OnInit, DoCheck {
   }
 
   createNewChat() {
-    this.router.navigate(['/chat/new']).then(result => {
       this.chatAvailable = "new";
-    })
+    /*this.router.navigate(['/chat/new']).then(result => {
+    })*/
   }
 
   findUser() {
