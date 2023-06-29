@@ -48,12 +48,12 @@ export class FriendComponent implements OnInit, DoCheck {
     ) {
       this.renderSwitch = true;
     }
-    console.log(this.renderSwitch)
+    // console.log(this.renderSwitch)
     if (this.renderSwitch) {
       this.renderList = [];
       if (this.currentPath == "home") {
         console.log("Render In Home")
-        console.log(this.friendList)
+        // console.log(this.friendList)
         const friends = this.friendList;
         for (let i = 0; i < friends.length; i++) {
           if (friends[i].sentUser.id == this.user?.id) {
@@ -97,11 +97,11 @@ export class FriendComponent implements OnInit, DoCheck {
   }
 
   findFriend() {
-    console.log(this.findUser)
+    // console.log(this.findUser)
     this.userService.findByUserAccByName(this.findUser).subscribe(data => {
       this.renderList = data;
       this.commonService.findUserResult = data;
-      console.log(this.commonService.findUserResult)
+      // console.log(this.commonService.findUserResult)
       this.router.navigate(['/friend/search']).then(() => {
         this.renderList = data;
       })
@@ -140,21 +140,21 @@ export class FriendComponent implements OnInit, DoCheck {
     if (action == "Un Friend") {
       const chatId = this.findFriendLisByUserId(user);
       this.friendService.deleteFriend(chatId).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.loadFriendList();
       })
     }
     if (action == "Cancel Request") {
       const chatId = this.findSentPendingChatByRespId(user);
       this.friendService.deleteFriend(chatId).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.loadSentPendingFriend()
       })
     }
     if (action == "Add Friend") {
       let friendRequestDTO = new FriendRequestDTO(user);
       this.friendService.sendFriendRequest(friendRequestDTO).subscribe(data => {
-        console.log(data)
+        // console.log(data)
         this.router.navigate(['/friend']).then();
         this.renderSwitch = true;
       })
@@ -162,7 +162,7 @@ export class FriendComponent implements OnInit, DoCheck {
     if (action == "Confirm Request") {
       const chatId = this.findConfirmPendingChatBySentId(user);
       this.friendService.confirmFriendRequest(chatId, {status: "ACCEPT"}).subscribe(data => {
-        console.log(data)
+        // console.log(data)
         this.loadConfirmPendingFriend();
         this.loadFriendList();
       })
@@ -171,14 +171,14 @@ export class FriendComponent implements OnInit, DoCheck {
 
   rejectActionFriend(action: string, user: User) {
     this.friendService.confirmFriendRequest(this.findConfirmPendingChatBySentId(user), {status: "REJECT"}).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.router.navigate(['/friend']).then();
       this.renderSwitch = true;
     })
   }
 
   findConfirmPendingChatBySentId(user: User) {
-    console.log(this.confirmPendingFriend)
+    // console.log(this.confirmPendingFriend)
     for (let i = 0; i < this.confirmPendingFriend.length; i++) {
       if (user.id == this.confirmPendingFriend[i].sentUser.id) {
         return this.confirmPendingFriend[i].id;
@@ -219,7 +219,7 @@ export class FriendComponent implements OnInit, DoCheck {
   private loadFriendList() {
     this.friendService.getFriendList().subscribe(data => {
       this.friendList = data;
-      console.log(data)
+      // console.log(data)
       this.renderSwitch = true;
     })
   }

@@ -47,7 +47,7 @@ export class EditPostDialogComponent implements OnInit {
       this.postDTO
     )
     this.postService.updateCurrentPost(this.postDTO, this.data.value.id).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.reRenderParent.emit({refresh: true});
       this.commonService.detectChange = Const.UPDATE_POST;
       // window.location.reload()
@@ -55,13 +55,13 @@ export class EditPostDialogComponent implements OnInit {
   }
 
   onUpload($event: string) {
-    console.log("Upload Image", $event)
+    // console.log("Upload Image", $event)
     this.imagesList.push(new Image($event))
     this.defaultImage = false;
   }
 
   ngOnInit(): void {
-    console.log(this.data)
+    // console.log(this.data)
     // @ts-ignore
     this.form = this.formBuilder.group({
       status: this.data.value.status,

@@ -31,7 +31,7 @@ export class CommentDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data)
+    // console.log(this.data)
   }
 
   createNewComment() {
@@ -40,7 +40,7 @@ export class CommentDialogComponent implements OnInit {
       {id: this.data.id}
     );
     this.commentService.createNewComment(this.commentDTO).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.reRenderParent.emit({refresh: true});
       this.commonService.detectChange = Const.CREATE_COMMENT;
       /*window.location.reload()*/

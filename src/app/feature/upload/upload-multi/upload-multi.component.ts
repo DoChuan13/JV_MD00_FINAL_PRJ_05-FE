@@ -29,7 +29,7 @@ export class UploadMultiComponent implements OnInit {
   onUploadMulti(fileName: any) {
     this.checkUploadAvatar = true;
     const codeName = fileName.name + "_" + Math.random().toString(18).substring(2);
-    console.log('codeName ---> ', codeName);
+    // console.log('codeName ---> ', codeName);
     this.ref = this.afStorage.ref(codeName);
     this.ref.put(fileName).then(snapshot => {
       return snapshot.ref.getDownloadURL();
@@ -42,7 +42,7 @@ export class UploadMultiComponent implements OnInit {
       .catch(error => {
         console.log(`Failed to upload avatar and get link ${error}`);
       })
-    console.log("Image base", this.downloadURL)
+    // console.log("Image base", this.downloadURL)
   }
 
   ngOnInit(): void {

@@ -37,7 +37,7 @@ export class PostDialogComponent {
       this.imagesList
     );
     this.postService.createNewPost(this.postDTO).subscribe(data=> {
-      console.log(data)
+      // console.log(data)
       this.reRenderParent.emit({refresh: true});
       this.commonService.detectChange = Const.CREATE_POST;
       // window.location.reload()
@@ -45,7 +45,7 @@ export class PostDialogComponent {
   }
 
   onUpload($event: string) {
-    console.log("Upload Image", $event)
+    // console.log("Upload Image", $event)
     this.imagesList.push(new Image($event))
   }
 }

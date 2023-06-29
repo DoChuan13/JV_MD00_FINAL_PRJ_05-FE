@@ -42,7 +42,7 @@ export class RegisterComponent {
       this.form.value.password,
     )
     this.authToken.registerUser(signUpDTO).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       if (data.status == 202) {
         this.status = "Register failed!";
       }

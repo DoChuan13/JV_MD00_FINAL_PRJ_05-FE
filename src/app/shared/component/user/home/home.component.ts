@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, DoCheck {
   loadModePost() {
     this.page.size += 3;
     this.postService.getPostPage(this.page).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.postList = data['content'];
       this.totalElements += 3;
       if (this.totalElements >= data['totalElements']) {
@@ -80,9 +80,9 @@ export class HomeComponent implements OnInit, DoCheck {
 
   likePost(id: number | undefined) {
     let like = {post: {id: id}}
-    console.log(like)
+    // console.log(like)
     this.likeService.likePost(like).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.reRenderData();
     })
   }
@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit, DoCheck {
       this.reRenderParent.emit(data);
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -138,7 +138,7 @@ export class HomeComponent implements OnInit, DoCheck {
       this.reRenderParent.emit(data);
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit, DoCheck {
       this.reRenderParent.emit(data);
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -166,7 +166,7 @@ export class HomeComponent implements OnInit, DoCheck {
       this.reRenderParent.emit(data);
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
   }
 

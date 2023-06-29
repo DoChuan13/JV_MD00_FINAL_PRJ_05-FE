@@ -90,7 +90,7 @@ export class ChatComponent implements OnInit, DoCheck {
       this.chatForm.value.content
     )
     this.chatService.sendChatContent(this.chatDetailDTO).subscribe(data => {
-      console.log(data)
+      // console.log(data)
     })
     this.chatForm.value.content = "";
     this.webSocketAPI._send(this.chatDetailDTO);
@@ -147,7 +147,7 @@ export class ChatComponent implements OnInit, DoCheck {
       this.reRenderParent.emit(data);
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -212,9 +212,9 @@ export class ChatComponent implements OnInit, DoCheck {
 
   startNewChat(startUser: User) {
     let chatDTO = new ChatDTO(startUser);
-    console.log(startUser)
+    // console.log(startUser)
     this.chatService.createNewChat(chatDTO).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.router.navigate(['/chat']).then();
     })
   }
@@ -233,7 +233,7 @@ export class ChatComponent implements OnInit, DoCheck {
         this.commonService.chatId = data.get('id');
         this.catchChatDetail = true;
         this.commonService.catchChatDetail = true;
-        console.log(data.get('id'))
+        // console.log(data.get('id'))
       }
     })
   }

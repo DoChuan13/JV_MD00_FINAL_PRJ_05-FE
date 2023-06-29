@@ -24,7 +24,7 @@ export class PostFormComponent implements OnInit {
       this.reRenderParent.emit(data);
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
   }
 

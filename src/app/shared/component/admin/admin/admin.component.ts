@@ -38,7 +38,7 @@ export class AdminComponent implements OnInit {
       newRole.push("PM");
     }
     this.userService.changeRoleAcc(element.id, {"roles": newRole}).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       if (data.message == 'User Role Update Success!!!') {
         this.loadDatabase();
       }
@@ -48,7 +48,7 @@ export class AdminComponent implements OnInit {
 
   BlockUser(element: any) {
     this.userService.blockUserAcc(element.id).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       if (data.message == 'Block Account Success!!!' ||
         data.message == "Unblock Account Success!!!") {
         this.loadDatabase();
@@ -58,9 +58,9 @@ export class AdminComponent implements OnInit {
   }
 
   DeleteUser(element: any) {
-    console.log(element);
+    // console.log(element);
     this.userService.deleteUserAcc(element.id).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       if (data.message == 'Account Deleted Success!!!') {
         this.loadDatabase();
       }
@@ -78,7 +78,7 @@ export class AdminComponent implements OnInit {
     this.role = "PM";
     // @ts-ignore
     this.tokenService.getRoles().forEach((role: any) => {
-      console.log(role)
+      // console.log(role)
       if (role == "ADMIN") {
         this.role = "ADMIN";
       }

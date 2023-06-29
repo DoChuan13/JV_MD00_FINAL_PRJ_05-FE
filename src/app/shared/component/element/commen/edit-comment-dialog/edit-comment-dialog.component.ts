@@ -29,7 +29,7 @@ export class EditCommentDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data)
+    // console.log(this.data)
     // @ts-ignore
     this.form = this.formBuilder.group({
       comment: this.data.value.comment
@@ -42,7 +42,7 @@ export class EditCommentDialogComponent implements OnInit {
       {id: this.data.id}
     );
     this.commentService.editCurrentComment(this.commentDTO, this.data.value.id).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.reRenderParent.emit({refresh: true});
       this.commonService.detectChange = Const.UPDATE_COMMENT;
       /*window.location.reload()*/
