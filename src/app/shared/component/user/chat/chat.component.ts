@@ -48,6 +48,7 @@ export class ChatComponent implements OnInit, DoCheck {
     private activeRouter: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
+    private activeRoute: ActivatedRoute,
     private dialog: MatDialog) {
   }
 
@@ -61,6 +62,7 @@ export class ChatComponent implements OnInit, DoCheck {
         this.activeRouter,
         this.formBuilder,
         this.router,
+        this.activeRoute,
         this.dialog
       ))
     ;
@@ -135,6 +137,13 @@ export class ChatComponent implements OnInit, DoCheck {
         }
       })
     }
+    this.activeRouter.url.subscribe(data => {
+      if (data[1] != null) {
+        if (data[1].path == "new") {
+          this.chatAvailable = "new";
+        }
+      }
+    })
   }
 
   openConfirmCommentDialog(chatId: any) {
@@ -199,9 +208,10 @@ export class ChatComponent implements OnInit, DoCheck {
   }
 
   createNewChat() {
+    this.chatAvailable = "new";
+    this.router.navigate(['/chat/new']).then(result => {
       this.chatAvailable = "new";
-    /*this.router.navigate(['/chat/new']).then(result => {
-    })*/
+    })
   }
 
   findUser() {
