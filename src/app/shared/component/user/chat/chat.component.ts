@@ -29,6 +29,7 @@ export class ChatComponent implements OnInit, DoCheck {
   public user?: User;
   public targetName?: string;
   public targetAvatar?: string;
+  private chatInfo?: Chat;
   searchChat: any;
   searchUser?: string;
   chatForm = this.formBuilder.group({
@@ -87,7 +88,13 @@ export class ChatComponent implements OnInit, DoCheck {
   }
 
   sendMessage() {
+    let chatResponse = {
+      id: this.chatInfo?.id,
+      sentUser: this.chatInfo?.sentUser,
+      respUser: this.chatInfo?.respUser
+    }
     this.chatDetailDTO = new ChatDetailDTO(
+      chatResponse,
       {id: this.chatId},
       this.chatForm.value.content
     )
@@ -100,18 +107,16 @@ export class ChatComponent implements OnInit, DoCheck {
 
   handleMessage(message: any) {
     /*console.log("Response =>>", JSON.parse(message))*/
-    let chatId = JSON.parse(JSON.parse(message)).content;
-    console.log("Detect new chat from ==> ", chatId)
-    this.catchChatId = chatId;
+    let chatResponse = JSON.parse(JSON.parse(message));
+    console.log("Detect new chat from ==> ", chatResponse.id)
+    this.catchChatId = chatResponse.id;
     const userService = this.commonService.loginUser;
-    this.chatService.getChatDetail(chatId).subscribe(data => {
-      if (data.sentUser.id == userService?.id ||
-        data.respUser.id == userService?.id) {
-        console.log("Can Refresh");
-        this.catchChatDetail = true;
-        this.commonService.catchChatDetail = true;
-      }
-    })
+    if (chatResponse.sentUser.id == userService?.id ||
+      chatResponse.respUser.id == userService?.id) {
+      console.log("Can Refresh");
+      this.catchChatDetail = true;
+      this.commonService.catchChatDetail = true;
+    }
   }
 
   ngDoCheck() {
@@ -175,6 +180,7 @@ export class ChatComponent implements OnInit, DoCheck {
   showChatUserInfo() {
     for (let i = 0; i < this.chatList.length; i++) {
       if (this.chatId == this.chatList[i].id) {
+        this.chatInfo = this.chatList[i];
         this.chatAvailable = "available";
         // @ts-ignore
         if (this.chatList[i].sentUser.id == this.user?.id) {

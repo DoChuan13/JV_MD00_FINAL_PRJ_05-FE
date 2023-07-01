@@ -2,7 +2,6 @@ import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {ChatComponent} from "../../shared/component/user/chat/chat.component";
 import {environment} from "../../../environments/environment";
-import {HttpHeaders} from "@angular/common/http";
 
 export class WebSocketAPI {
   webSocketEndPoint: string = environment.API+'ws';
@@ -15,18 +14,9 @@ export class WebSocketAPI {
   }
 
   _connect() {
-    /*const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json')
-      .append('Access-Control-Allow-Headers', 'Content-Type')
-      .append('Access-Control-Allow-Methods', 'GET',)
-      .append('Access-Control-Allow-Methods', 'POST',)
-      .append('Access-Control-Allow-Methods', 'PUT',)
-      .append('Access-Control-Allow-Methods', 'PATCH',)
-      .append('Access-Control-Allow-Methods', 'DELETE',)
-      .append('Access-Control-Allow-Origin', '*');
-    console.log("Initialize WebSocket Connection");*/
     let ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
+    this.stompClient.debug = null;
     const _this = this;
     _this.stompClient.connect({}, function () {
       _this.stompClient.subscribe(_this.topic, function (sdkEvent: any) {
@@ -61,7 +51,7 @@ export class WebSocketAPI {
   }
 
   onMessageReceived(message: any) {
-    console.log("Message Received from Server :: " + message);
+    /*console.log("Message Received from Server :: " + message);*/
     this.chatComponent.handleMessage(JSON.stringify(message.body));
   }
 }

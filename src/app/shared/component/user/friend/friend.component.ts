@@ -155,8 +155,9 @@ export class FriendComponent implements OnInit, DoCheck {
       let friendRequestDTO = new FriendRequestDTO(user);
       this.friendService.sendFriendRequest(friendRequestDTO).subscribe(data => {
         // console.log(data)
-        this.router.navigate(['/friend']).then();
-        this.renderSwitch = true;
+        this.loadSentPendingFriend()
+        // this.router.navigate(['/friend']).then();
+        // this.renderSwitch = true;
       })
     }
     if (action == "Confirm Request") {
@@ -164,7 +165,7 @@ export class FriendComponent implements OnInit, DoCheck {
       this.friendService.confirmFriendRequest(chatId, {status: "ACCEPT"}).subscribe(data => {
         // console.log(data)
         this.loadConfirmPendingFriend();
-        this.loadFriendList();
+        // this.loadFriendList();
       })
     }
   }

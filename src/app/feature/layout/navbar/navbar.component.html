@@ -1,3 +1,13 @@
+<style>
+  .active-Link {
+    --tw-border-opacity: 1;
+    --tw-text-opacity: 1;
+    border-color: rgba(59, 130, 246, var(--tw-border-opacity));
+    border-bottom-width: 4px;
+    color: rgba(59, 130, 246, var(--tw-text-opacity));
+  }
+</style>
+
 <!-- NAV -->
 <nav
   class="bg-white dark:bg-dark-second h-max md:h-14 w-full shadow flex flex-col md:flex-row items-center justify-center md:justify-between fixed top-0 z-50 border-b dark:border-dark-third"
@@ -11,7 +21,9 @@
         class="w-24 sm:w-20 lg:w-10 h-auto"
         height="200" width="200"/>
     </a>
-    <a routerLink="/" class="inline-block md:hidden">
+    <a
+        routerLinkActive="active-Link"
+      routerLink="/" class="inline-block md:hidden">
       <img ngSrc="./assets/images/fb-logo-mb.png" alt="" class="w-32 h-auto" height="314" width="1613"/>
     </a>
     <div class="flex items-center justify-between space-x-1">
@@ -27,7 +39,9 @@
           class="outline-none bg-transparent hidden xl:inline-block"
         />
       </div>
-      <a routerLink="/chat" style="text-decoration: none">
+      <a
+        routerLinkActive="active-Link"
+        routerLink="/chat" style="text-decoration: none">
         <div
           class="text-2xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third dark:hover:bg-dark-fourth rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt relative"
         >
@@ -57,8 +71,9 @@
       style="margin-bottom: 0">
     <li class="w-1/5 md:w-max text-center">
       <a
+        routerLinkActive="active-Link"
         routerLink="/"
-        class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block text-blue-500 border-b-4 border-blue-500"
+        class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block"
       >
         <i class="bx bxs-home"></i>
       </a>
@@ -66,6 +81,7 @@
 
     <li class="w-1/5 md:w-max text-center">
       <a
+        routerLinkActive="active-Link"
         routerLink="/friend"
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
@@ -75,6 +91,7 @@
 
     <li class="w-1/5 md:w-max text-center">
       <a
+        routerLinkActive="active-Link"
         routerLink="/video"
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
@@ -87,6 +104,7 @@
 
     <li class="w-1/5 md:w-max text-center">
       <a
+        routerLinkActive="active-Link"
         routerLink="/store"
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
@@ -96,6 +114,7 @@
 
     <li class="w-1/5 md:w-max text-center hidden md:inline-block">
       <a
+        routerLinkActive="active-Link"
         routerLink="/group"
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
@@ -105,6 +124,7 @@
 
     <li class="w-1/5 md:w-max text-center inline-block md:hidden">
       <a
+        routerLinkActive="active-Link"
         routerLink="/notification"
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
@@ -117,6 +137,7 @@
 
     <li class="w-1/5 md:w-max text-center inline-block xl:hidden">
       <a
+        routerLinkActive="active-Link"
         routerLink="/user"
         class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative"
       >
